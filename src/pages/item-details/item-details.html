@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{getname}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button round outline icon-start small style="width:45%" (click) = 'mapView(1);'>Map</button>
+  <button ion-button round outline icon-end small style="width:50%" (click) = 'mapView(2);'>Street View</button>
+
+  <div style="width:100%;height:45%;overflow:auto;">
+      <iframe style="width:100%;height:100%" [src]="mapurl"></iframe>
+  </div>  
+  <br>
+  <table width="100%">
+    <tr>
+      <td>Id:</td>
+      <td>{{getid}}</td>
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td>{{getname}}</td>
+    </tr>
+    <tr>
+      <td valign="top">Address:&emsp;</td>
+      <td>{{getaddress}}</td>
+    </tr>
+    <tr>
+      <td>Lat:</td>
+      <td>{{getlat}}</td>
+    </tr>
+    <tr> 
+      <td>Lng:</td>
+      <td>{{getlng}}</td>
+    </tr>
+<!--  
+    <tr>
+      <td colspan="2"><br>URL: {{geturl}} <br><br></td>
+    </tr>
+    <tr>
+      <td colspan="2"> SANITIZED_URL: {{sanitizedUrl}}</td>
+    </tr>
+-->  
+  </table>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block ion-button (click)="openActionSheet(getlat,getlng)" class="button">Get Directions</button>
+</ion-footer>
