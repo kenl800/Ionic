@@ -24,12 +24,12 @@ export class FunctionalitiesPage {
   userLat: decimal;
   userLng: decimal;
   parseUrl: string;
-  R: int;
-  dLat: int;
-  dLon: int;
-  a: int;
-  c: int;
-  d: int;
+  R: decimal;
+  dLat: decimal;
+  dLon: decimal;
+  a: decimal;
+  c: decimal;
+  d: decimal;
 
 
   constructor(public restProvider: RestProvider,public navCtrl: NavController,private geolocation: Geolocation){
