@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser, AppAvailability, Device } from 'ionic-native';
-import { Geolocation } from '@ionic-native/geolocation';
+//import { Geolocation } from '@ionic-native/geolocation';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActionSheetController } from 'ionic-angular';
 
@@ -25,7 +25,7 @@ export class ItemDetailsPage {
   getlat: any;
   getlng: any;
   sanitizedUrl: any;
-  mapurl: string;
+  mapurl: any;
 
   	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer:DomSanitizer, public actionSheetCtrl: ActionSheetController) {
 	   this.getid = navParams.get('id'); 
@@ -52,15 +52,15 @@ export class ItemDetailsPage {
 	}
 
 	//http://maps.apple.com/?saddr=4.415049000000001,114.01306&daddr=4.412898,113.998884&dirflg=d
-	openMap(lat:decimal,lng:decimal) {
+	openMap(lat,lng) {
 		this.launchExternalApp('maps://','','maps://','http://maps.apple.com/?saddr=Current%20Location&daddr=' + lat + ',' + lng + '&dirflg=d');
     }										// yet to change
 
-    openWaze(lat:decimal,lng:decimal){
+    openWaze(lat,lng){
     	this.launchExternalApp('waze://','','waze://','https://waze.com/ul?ll=' + lat + ',' + lng + '&navigate=yes&z=10');
     }
 
-	openActionSheet(lat:decimal,lng:decimal){
+	openActionSheet(lat,lng){
 		 console.log('opening');
 		 let actionsheet = this.actionSheetCtrl.create({
 		 buttons:[{
@@ -78,7 +78,7 @@ export class ItemDetailsPage {
 		 actionsheet.present();
 	}
 
-    sanitizeTheUrl(url: string){
+    sanitizeTheUrl(url){
     	return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
