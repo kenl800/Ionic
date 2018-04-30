@@ -19,6 +19,14 @@ export class ItemDetailsPage {
   lng: string;
   url: string;
 
+  getid: string;
+  getname: string;
+  getaddress: string;
+  getlat: any;
+  getlng: any;
+  sanitizedUrl: any;
+  mapurl: string;
+
   	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer:DomSanitizer, public actionSheetCtrl: ActionSheetController) {
 	   this.getid = navParams.get('id'); 
 	   this.getname = navParams.get('name'); 
@@ -26,7 +34,7 @@ export class ItemDetailsPage {
 	   this.getlat = navParams.get('lat'); 
 	   this.getlng = navParams.get('lng'); 
 	   this.sanitizedUrl = this.sanitizeTheUrl(this.mapurl);
-	  	this.mapurl = this.sanitizeTheUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD8eukMhKq-plpab6fStzMcBa9as_LnxG0&q=' + this.getlat + ',' + this.getlng);
+	   this.mapurl = this.sanitizeTheUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD8eukMhKq-plpab6fStzMcBa9as_LnxG0&q=' + this.getlat + ',' + this.getlng);
   	}
 
   	launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string) {
