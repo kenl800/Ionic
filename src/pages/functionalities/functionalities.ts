@@ -21,15 +21,15 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class FunctionalitiesPage {
   items: Array<{title: string, note?: string, component: any}>;
-  userLat: decimal;
-  userLng: decimal;
+  userLat: any;
+  userLng: any;
   parseUrl: string;
-  R: decimal;
-  dLat: decimal;
-  dLon: decimal;
-  a: decimal;
-  c: decimal;
-  d: decimal;
+  R: any;
+  dLat: any;
+  dLon: any;
+  a: any;
+  c: any;
+  d: any;
 
 
   constructor(public restProvider: RestProvider,public navCtrl: NavController,private geolocation: Geolocation){
