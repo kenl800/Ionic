@@ -18,6 +18,17 @@ import { ActivationPage } from '../activation/activation';
 export class ListingPage {
   listing: ListingModel = new ListingModel();
   loading: any;
+  scanStatus: any;
+  results: any;
+  scannedCode: any;
+  codeStart: any;
+  codeEnd: any;
+  passStart: any;
+  passEnd: any;
+  finalCode: any;
+  finalPass: any;
+  url: any;
+  
 
   constructor(
     public nav: NavController,
