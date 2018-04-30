@@ -15,7 +15,7 @@ export class RestProvider {
   //url = "http://care.x-one.asia/api/json_qr_details?code=300116109&pass=3022774275472643";
 
   result: Array<any>;
-  data: any;
+  data: Array<any>;
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
