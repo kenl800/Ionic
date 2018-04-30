@@ -21,8 +21,15 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class FunctionalitiesPage {
   items: Array<{title: string, note?: string, component: any}>;
-  userLat: any;
-  userLng: any;
+  userLat: decimal;
+  userLng: decimal;
+  parseUrl: string;
+  R: int;
+  dLat: int;
+  dLon: int;
+  a: int;
+  c: int;
+  d: int;
 
 
   constructor(public restProvider: RestProvider,public navCtrl: NavController,private geolocation: Geolocation){
@@ -64,7 +71,7 @@ export class FunctionalitiesPage {
 
 
 //Harvesine Formula -> Not accurate? Different from Google Maps Distance
-  getDistance(userLat:decimal,userLng:decimal,placeLat:decimal,placeLng:decimal){
+  getDistance(userLat,userLng,placeLat,placeLng){
     this.R = 6371; // Radius of the earth in km
     this.dLat = this.deg2rad(placeLat-userLat);  // deg2rad below
     this.dLon = this.deg2rad(placeLng-userLng); 
