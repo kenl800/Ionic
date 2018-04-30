@@ -9,6 +9,7 @@ import { ListingService } from './listing.service';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../../providers/rest/rest';
+import { ActivationPage } from '../activation/activation';
 
 @Component({
   selector: 'listing-page',
@@ -80,6 +81,7 @@ export class ListingPage {
     .then(data => {
       this.results = data;
       this.results = Array.of(this.results);
+      this.nav.push(ActivationPage, { results: this.results });
     });
   }
 

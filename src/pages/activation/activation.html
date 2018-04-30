@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ActivationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Activation Status</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item *ngFor="let result of results">
+    <p>date_activated: {{result.date_activated}}</p>
+    <p>check_count: {{result.check_count}}</p>
+    <p>buyer_name: {{result.buyer_name}}</p>
+    <p>seller_name: {{result.seller_name}}</p>
+    <p>dealer_name: {{result.dealer_name}}</p>
+    <p>product: {{result.product}}</p>
+    <p>product_status: {{result.product_status}}</p>
+    <p>expired_date: {{result.expired_date}}</p>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button block ion-button (click)="activateProduct()" class="button">Activate Product</button>
+</ion-footer>

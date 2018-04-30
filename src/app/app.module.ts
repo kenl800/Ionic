@@ -114,6 +114,10 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../providers/rest/rest';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { ActivationPage } from '../pages/activation/activation';
+import { ActivationFormPage } from '../pages/activation-form/activation-form';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -145,6 +149,8 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfServicePage,
     PrivacyPolicyPage,
     ItemDetailsPage,
+    ActivationPage,
+    ActivationFormPage,
 
     //functionalities
     MapsPage,
@@ -190,6 +196,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {
 			modalEnter: 'modal-slide-in',
 			modalLeave: 'modal-slide-out',
@@ -259,7 +266,9 @@ export function createTranslateLoader(http: HttpClient) {
     BlogCustomPagePage,
 		WordpressLoginPage,
     WordpressMenuPage,
-    BlogCategoriesPage
+    BlogCategoriesPage,
+    ActivationPage,
+    ActivationFormPage
   ],
   providers: [
     FeedService,

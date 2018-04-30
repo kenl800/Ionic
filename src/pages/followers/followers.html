@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{'FOLLOWERS' | translate }}</ion-title>
+    <ion-title>{{'MY QR CODE' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="followers-content">
   <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-  <ion-searchbar placeholder="Search"></ion-searchbar>
+  <!-- <ion-searchbar placeholder="Search"></ion-searchbar>
   <ion-list class="followers-list">
     <ion-item class="list-item" *ngFor="let item of list">
       <ion-thumbnail item-left>
@@ -20,4 +20,12 @@
       </button>
     </ion-item>
   </ion-list>
+  -->
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+    <ion-card-content>
+      <p>Value: {{ createdCode }}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

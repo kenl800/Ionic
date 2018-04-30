@@ -1,0 +1,53 @@
+<!--
+  Generated template for the ActivationFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Activation Form</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<section class="form-section">
+		<ion-item-divider color="light">Seller QR Code</ion-item-divider>
+		<ion-row padding>
+			<ion-col width-85>
+	    		<ion-input type="text" placeholder="Scan Seller QR Code" [disabled]="true" value="{{scannedCode}}"></ion-input>
+	    	</ion-col>
+	    	<ion-col width-15>
+	    		<ion-icon name="qr-scanner" (click)="scanCode()" style="zoom:2.0;"></ion-icon>
+	    	</ion-col>
+	    </ion-row>
+	    <ion-item-divider color="light">Customer Details</ion-item-divider>
+	    <ion-item>
+			<ion-input type="text" placeholder="Customer NRIC"></ion-input>
+		</ion-item>
+		<ion-item-divider color="light">Attachments</ion-item-divider>
+		<ion-item>
+			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="openImagePicker()">
+		    	<ion-icon name="camera"></ion-icon>
+		    	<h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3>
+		  	</button>
+		  	<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+		</ion-item>
+		<ion-item-divider color="light">Terms and Conditions</ion-item-divider>
+		<ion-row>
+			<ion-col width-15 padding>
+				<ion-checkbox [(ngModel)]="checkTerms"></ion-checkbox>
+			</ion-col>
+			<ion-col width-85>
+				<ion-label>I acknowledge that I have read and <br>agree to the Terms and Conditions</ion-label>
+			</ion-col>
+		</ion-row>
+	</section>
+</ion-content>
+
+<ion-footer>
+	<button ion-button block ion-button (click)="activateProduct()" class="button">Submit</button>
+</ion-footer>

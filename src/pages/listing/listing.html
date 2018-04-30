@@ -19,6 +19,7 @@
   <button ion-button icon-left (click)="scanCode()" color="secondary">
     <ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
       <ion-card *ngIf="scannedCode">
+        <!--
         <ion-item *ngIf="scanStatus">
           <ion-item *ngFor="let result of results">
             <p>date_activated: {{result.date_activated}}</p>
@@ -31,6 +32,7 @@
             <p>expired_date: {{result.expired_date}}</p>
           </ion-item>
         </ion-item>
+        -->
         <ion-item *ngIf="!scanStatus">
           <a href="{{scannedCode}}">{{scannedCode}}</a>
       </ion-item>

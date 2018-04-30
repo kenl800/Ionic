@@ -8,7 +8,7 @@
   <div class="user-details">
     <ion-row class="user-main-data-row">
       <ion-col no-padding width-33>
-        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="profile.user.image" alt="profile.user.name" title="profile.user.name"></preload-image>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="user.image" alt="user.name" title="user.name"></preload-image>
       </ion-col>
       <ion-col no-padding>
         <ion-row class="social-presence-row">
@@ -35,18 +35,25 @@
       </ion-col>
     </ion-row>
     <ion-row wrap class="user-bio-row">
-      <ion-col no-padding width-50>
-        <h2 class="user-name">{{profile.user.name}}</h2>
+      <ion-col no-padding width-70>
+        <h2 class="user-name">{{user.name}}</h2>
       </ion-col>
-      <ion-col no-padding width-50>
-        <span class="user-location">{{profile.user.location}}</span>
+      <ion-col no-padding width-30>
+        <span class="user-location">
+          <ion-icon *ngIf="(user.gender | lowercase) == 'female'" class="user-gender-icon" name="female"></ion-icon>
+          <ion-icon *ngIf="(user.gender | lowercase) == 'male'" class="user-gender-icon" name="male"></ion-icon>
+          <span class="user-gender">{{user.gender}}</span>
+        </span>
       </ion-col>
-      <ion-col no-padding width-100>
-        <p class="user-description">
-          {{profile.user.about}}
-        </p>
+      <ion-col no-padding width-70>
+        <p class="user-description">{{user.userId}}</p>
+      </ion-col>
+      <ion-col no-padding width-30>
+        <ion-icon name="qr-scanner" (click)="createCode()" style="zoom:2.0"></ion-icon>
       </ion-col>
     </ion-row>
+
+<!--
     <ion-segment class="user-content-segment" [(ngModel)]="display" (ionChange)="onSegmentChanged($event)">
       <ion-segment-button value="grid" (ionSelect)="onSegmentSelected($event)">
         {{'GRID' | translate}}
@@ -97,5 +104,6 @@
         </ion-col>
       </ion-row>
     </div>
+  -->
   </div>
 </ion-content>

@@ -8,10 +8,12 @@ import { UserModel } from '../profile/profile.model';
 })
 export class FollowersPage {
   list: Array<UserModel> = [];
+  createdCode: any;
 
   constructor(public menu: MenuController, public navParams: NavParams)
   {
     this.list = navParams.get('list');
+    this.createdCode = navParams.get('createdCode');
   }
 
   ionViewDidEnter() {

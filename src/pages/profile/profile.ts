@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { MenuController, SegmentButton, App, NavParams, LoadingController } from 'ionic-angular';
+import { ModalController, MenuController, SegmentButton, App, NavParams, LoadingController } from 'ionic-angular';
 import { FollowersPage } from '../followers/followers';
 import { SettingsPage } from '../settings/settings';
 import { ProfileModel } from './profile.model';
 import { ProfileService } from './profile.service';
 import { SocialSharing } from '@ionic-native/social-sharing';
+
+import { FacebookUserModel } from '../facebook-login/facebook-user.model';
+import { FacebookLoginService } from '../facebook-login/facebook-login.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import 'rxjs/Rx';
 
@@ -15,7 +19,10 @@ import 'rxjs/Rx';
 export class ProfilePage {
   display: string;
   profile: ProfileModel = new ProfileModel();
+  user: FacebookUserModel = new FacebookUserModel();
   loading: any;
+  createdCode = null;
+  scannedCode = null;
 
   constructor(
     public menu: MenuController,
@@ -23,7 +30,10 @@ export class ProfilePage {
     public navParams: NavParams,
     public profileService: ProfileService,
     public loadingCtrl: LoadingController,
-    public socialSharing: SocialSharing
+    public socialSharing: SocialSharing,
+    public facebookLoginService: FacebookLoginService,
+    private barcodeScanner: BarcodeScanner,
+    public modalCtrl: ModalController
   ) {
     this.display = "list";
 
@@ -40,6 +50,23 @@ export class ProfilePage {
         this.profile.posts = data.posts;
         this.loading.dismiss();
       });
+
+    //added for testing -> 28th Apr 2018
+    this.facebookLoginService.getFacebookUser()
+    .then((user) => {
+      this.user = user;
+      this.loading.dismiss();
+    }, (error) => {
+      console.log(error);
+      this.loading.dismiss();
+    });
+  }
+
+  createCode() {
+    this.createdCode = '50';
+    this.app.getRootNav().push(FollowersPage, {
+      createdCode: this.createdCode
+    });
   }
 
   goToFollowersList() {
