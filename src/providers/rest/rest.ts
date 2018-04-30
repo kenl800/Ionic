@@ -14,6 +14,8 @@ export class RestProvider {
   //apiUrl = "https://care.x-one.asia/api/json_location_list?lat=4.387194&lon=113.978934";
   //url = "http://care.x-one.asia/api/json_qr_details?code=300116109&pass=3022774275472643";
 
+  result: any;
+  
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -21,7 +23,7 @@ export class RestProvider {
   getUsers(apiUrl) {
   return new Promise(resolve => {
     this.http.get(apiUrl).subscribe(data => {
-      resolve(data);
+      resolve(data.result);
     }, err => {
       console.log(err);
     });
@@ -31,7 +33,7 @@ export class RestProvider {
   getProduct(url) {
   return new Promise(resolve => {
     this.http.get(url).subscribe(data => {
-      resolve(data);
+      resolve(data.result);
     }, err => {
       console.log(err);
     });
