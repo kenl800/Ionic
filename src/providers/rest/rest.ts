@@ -22,7 +22,7 @@ export class RestProvider {
 
   getUsers(apiUrl) {
   return new Promise(resolve => {
-    this.http.get(apiUrl).subscribe(data => {
+    this.http.get(apiUrl).subscribe((data:any) => {
       this.getResult = data.result;
       resolve(this.getResult);
     }, err => {
@@ -33,7 +33,7 @@ export class RestProvider {
 
   getProduct(url) {
   return new Promise(resolve => {
-    this.http.get(url).subscribe(data => {
+    this.http.get(url).subscribe((data:any) => {
       this.getResult = data.result;
       resolve(this.getResult);
     }, err => {
@@ -44,7 +44,7 @@ export class RestProvider {
 
   getFbUser(url) {
   return new Promise(resolve => {
-    this.http.get(url).subscribe(data => {
+    this.http.get(url).subscribe((data:any) => {
       resolve(data);
     }, err => {
       console.log(err);
