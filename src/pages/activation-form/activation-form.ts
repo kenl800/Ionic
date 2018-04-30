@@ -16,17 +16,19 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class ActivationFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private barcodeScanner: BarcodeScanner) {
-  }
+	scannedCode: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivationFormPage');
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams,private barcodeScanner: BarcodeScanner) {
+	}
 
-  scanCode() {
-    this.barcodeScanner.scan().then(barcodeData => {
-      this.scannedCode = barcodeData.text;
-    });
-  }
+	ionViewDidLoad() {
+	console.log('ionViewDidLoad ActivationFormPage');
+	}
+
+	scanCode() {
+	this.barcodeScanner.scan().then(barcodeData => {
+	  this.scannedCode = barcodeData.text;
+	});
+	}
 
 }
