@@ -21,7 +21,7 @@ export class RestProvider {
   getUsers(apiUrl) {
   return new Promise(resolve => {
     this.http.get(apiUrl).subscribe(data => {
-      resolve(data.result);
+      resolve(data);
     }, err => {
       console.log(err);
     });
@@ -31,7 +31,7 @@ export class RestProvider {
   getProduct(url) {
   return new Promise(resolve => {
     this.http.get(url).subscribe(data => {
-      resolve(data.result);
+      resolve(data);
     }, err => {
       console.log(err);
     });

@@ -82,7 +82,7 @@ export class ItemDetailsPage {
     	return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
-    mapView(value: int){
+    mapView(value){
     	if (value==1){
     		this.mapurl = this.sanitizeTheUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD8eukMhKq-plpab6fStzMcBa9as_LnxG0&q=' + this.getlat + ',' + this.getlng);
     	}
