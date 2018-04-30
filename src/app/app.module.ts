@@ -112,7 +112,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // April 26th 2018
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../providers/rest/rest';
-import { Geolocation } from '@ionic-native/geolocation';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ActivationPage } from '../pages/activation/activation';
@@ -304,8 +303,7 @@ export function createTranslateLoader(http: HttpClient) {
 		Crop,
 		EmailComposer,
     BarcodeScanner,
-    RestProvider,
-    Geolocation
+    RestProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
