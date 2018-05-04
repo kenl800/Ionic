@@ -46,9 +46,11 @@ export class FacebookLoginService {
           userId: user.id,
           name: user.name,
           gender: user.gender,
-          image: "https://graph.facebook.com/" + user.id + "/picture?type=large", 
-          friends: data.friends,
-          photos: data.photos
+          image: "https://graph.facebook.com/" + user.id + "/picture?type=large",
+          email: user.email,
+          location: user.location,
+          birthday: user.birthday,
+          language: user.languages
         })
       });
     });
