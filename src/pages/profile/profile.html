@@ -46,13 +46,24 @@
         </span>
       </ion-col>
       <ion-col no-padding width-70>
+        <p class="user-description">{{user.email}}</p>
+      </ion-col>
+      <div *ngFor="let result of results">
+        <ion-col no-padding width-30>
+          <ion-icon name="qr-scanner" (click)="createCode(result.u_id)" style="zoom:2.0"></ion-icon>
+        </ion-col>
+      </div>
+      <!-- Soon to hide -->
+      <ion-col no-padding width-100>
         <p class="user-description">{{user.userId}}</p>
       </ion-col>
-      <ion-col no-padding width-30>
-        <ion-icon name="qr-scanner" (click)="createCode()" style="zoom:2.0"></ion-icon>
-      </ion-col>
     </ion-row>
-
+<!--
+    <p>E-mail: {{ user.email }}</p>
+    <p>Location: {{ user.location }}</p>
+    <p>Birthday: {{ user.birthday }}</p>
+    <p>Language: {{ user.language }}</p>
+-->
 <!--
     <ion-segment class="user-content-segment" [(ngModel)]="display" (ionChange)="onSegmentChanged($event)">
       <ion-segment-button value="grid" (ionSelect)="onSegmentSelected($event)">

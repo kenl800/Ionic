@@ -15,15 +15,17 @@
 
 <ion-content padding>
   <ion-item *ngFor="let result of results">
-    <p>date_activated: {{result.date_activated}}</p>
-    <p>check_count: {{result.check_count}}</p>
-    <p>buyer_name: {{result.buyer_name}}</p>
-    <p>seller_name: {{result.seller_name}}</p>
-    <p>dealer_name: {{result.dealer_name}}</p>
-    <p>product: {{result.product}}</p>
+    <p>date_activated: {{result.result.date_activated}}</p>
+    <p>check_count: {{result.result.check_count}}</p>
+    <p>buyer_name: {{result.result.buyer_name}}</p>
+    <p>seller_name: {{result.result.seller_name}}</p>
+    <p>dealer_name: {{result.result.dealer_name}}</p>
+    <p>product: {{result.result.product}}</p>
     <p>product_status: {{result.product_status}}</p>
     <p>expired_date: {{result.expired_date}}</p>
   </ion-item>
+  <button ion-button block ion-button (click)="generateUserId()" class="button">[Developer] Facebook login</button>
+  <button ion-button block ion-button (click)="deactivateProduct()" class="button">[Developer] Deactivate Product</button>
 
 </ion-content>
 

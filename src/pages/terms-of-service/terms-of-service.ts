@@ -8,7 +8,11 @@ import { ViewController } from 'ionic-angular';
 
 export class TermsOfServicePage {
 
-  constructor(public view: ViewController) {}
+  tncurl: any;
+
+  constructor(public view: ViewController) {
+  	this.tncurl = "https://care.x-one.asia/api/json_tnc_page";
+  }
 
   dismiss() {
     this.view.dismiss();

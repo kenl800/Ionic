@@ -20,6 +20,7 @@ export class ListingPage {
   loading: any;
   scanStatus: any;
   results: any;
+  results2: any;
   scannedCode: any;
   codeStart: any;
   codeEnd: any;
@@ -28,7 +29,7 @@ export class ListingPage {
   finalCode: any;
   finalPass: any;
   url: any;
-  
+
 
   constructor(
     public nav: NavController,
@@ -92,7 +93,27 @@ export class ListingPage {
     .then(data => {
       this.results = data;
       this.results = Array.of(this.results);
-      this.nav.push(ActivationPage, { results: this.results });
+      this.nav.push(ActivationPage, { results: this.results, serialCode: this.finalCode , serialPass: this.finalPass });
+    });
+  }
+
+  getProduct2(url) {
+    this.restProvider.getProduct(url)
+    .then(data => {
+      this.results = data;
+      this.results = Array.of(this.results);
+      console.log(this.results)
+    });
+  }
+
+  activateProduct(nric){
+    this.productUrl = "https://care.x-one.asia/api/try_submit?nric=" + nric + "&age=19";
+    this.restProvider.getProduct(this.productUrl)
+    .then(data => {
+      this.results = data;
+      this.results = Array.of(this.results);
+      console.log(nric);
+      console.log(this.results);
     });
   }
 

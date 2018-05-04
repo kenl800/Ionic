@@ -9,6 +9,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { FacebookUserModel } from '../facebook-login/facebook-user.model';
 import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { RestProvider } from '../../providers/rest/rest';
 
 import 'rxjs/Rx';
 
@@ -22,7 +23,9 @@ export class ProfilePage {
   user: FacebookUserModel = new FacebookUserModel();
   loading: any;
   createdCode = null;
-  scannedCode = null;
+  scannedCode:any;
+  apiUrl: any;
+  results: any;
 
   constructor(
     public menu: MenuController,
@@ -33,7 +36,8 @@ export class ProfilePage {
     public socialSharing: SocialSharing,
     public facebookLoginService: FacebookLoginService,
     private barcodeScanner: BarcodeScanner,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public restProvider: RestProvider
   ) {
     this.display = "list";
 
@@ -55,6 +59,11 @@ export class ProfilePage {
     this.facebookLoginService.getFacebookUser()
     .then((user) => {
       this.user = user;
+      
+      this.apiUrl = "https://care.x-one.asia/api/social_login/" + this.user.userId;
+      this.getFbUser(this.apiUrl);
+
+      console.log(this.user);
       this.loading.dismiss();
     }, (error) => {
       console.log(error);
@@ -62,12 +71,21 @@ export class ProfilePage {
     });
   }
 
-  createCode() {
-    this.createdCode = '50';
+  createCode(uniqueId) {
+    this.createdCode = uniqueId;
+    console.log(this.createdCode);
     this.app.getRootNav().push(FollowersPage, {
       createdCode: this.createdCode
     });
   }
+
+  getFbUser(url) {
+    this.restProvider.getFbUser(url)
+    .then(data => {
+       this.results = data;
+       this.results = Array.of(this.results);
+    });
+   }
 
   goToFollowersList() {
     // close the menu when clicking a link from the menu

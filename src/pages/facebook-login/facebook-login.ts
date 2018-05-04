@@ -11,6 +11,8 @@ import { FacebookLoginService } from './facebook-login.service';
 export class FacebookLoginPage {
   user: FacebookUserModel = new FacebookUserModel();
   loading: any;
+  fburl: any;
+  results: any;
 
   constructor(
     public nav: NavController,

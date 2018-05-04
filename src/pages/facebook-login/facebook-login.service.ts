@@ -46,7 +46,7 @@ export class FacebookLoginService {
           userId: user.id,
           name: user.name,
           gender: user.gender,
-          image: "https://graph.facebook.com/" + user.id + "/picture?type=large",
+          image: "https://graph.facebook.com/" + user.id + "/picture?type=large", 
           friends: data.friends,
           photos: data.photos
         })
@@ -60,7 +60,7 @@ export class FacebookLoginService {
       //["public_profile"] is the array of permissions, you can add more if you need
       this.fb.login(["public_profile"]).then((response) => {
         //Getting name and gender properties
-        this.fb.api("/me?fields=name,gender", [])
+        this.fb.api("/me?fields=name,gender,languages,location,email,birthday", [])
         .then((user) => {
           //now we have the users info, let's save it in the NativeStorage
           this.setFacebookUser(user)
@@ -104,8 +104,10 @@ export class FacebookLoginService {
             name: user.name,
             gender: user.gender,
             image: "https://graph.facebook.com/" + user.id + "/picture?type=large",
-            friends: data.friends,
-            photos: data.photos
+            email: user.email,
+            location: user.location,
+            birthday: user.birthday,
+            language: user.languages
           })
         );
       });

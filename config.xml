@@ -129,7 +129,7 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>your usage message</string>
+        <string>For Barcode Scanning</string>
     </edit-config>
     <engine name="ios" spec="~4.5.4" />
 </widget>

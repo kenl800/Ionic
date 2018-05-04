@@ -44,7 +44,7 @@ export class FunctionalitiesPage {
       this.userLat = resp.coords.latitude;
       this.userLng = resp.coords.longitude;
       //for spoofing
-      //this.userLat = 3.0721; this.userLng = 101.6069;
+      this.userLat = 3.0721; this.userLng = 101.6069;
       this.getUsers(this.userLat,this.userLng);
     });
   }

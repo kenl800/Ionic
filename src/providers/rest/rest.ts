@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
 /*
   Generated class for the RestProvider provider.
@@ -16,6 +17,8 @@ export class RestProvider {
 
   result: any;
   getResult: any;
+  productUrl: any;
+  request: any;
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -34,7 +37,7 @@ export class RestProvider {
   getProduct(url) {
   return new Promise(resolve => {
     this.http.get(url).subscribe((data:any) => {
-      this.getResult = data.result;
+      this.getResult = data;
       resolve(this.getResult);
     }, err => {
       console.log(err);
@@ -52,5 +55,23 @@ export class RestProvider {
   });
   }
 
+  getFbUser2(url) {
+  return new Promise(resolve => {
+    this.http.get(url).subscribe((data:any) => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    });
+  });
+  }
 
+  registerFB(url) {
+  return new Promise(resolve => {
+    this.http.get(url).subscribe((data:any) => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    });
+  });
+  }
 }
