@@ -105,7 +105,7 @@ export class ListingPage {
       console.log(this.results)
     });
   }
-
+/*
   activateProduct(nric){
     this.productUrl = "https://care.x-one.asia/api/try_submit?nric=" + nric + "&age=19";
     this.restProvider.getProduct(this.productUrl)
@@ -116,5 +116,5 @@ export class ListingPage {
       console.log(this.results);
     });
   }
-
+*/
 }

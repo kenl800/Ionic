@@ -33,6 +33,7 @@ export class ActivationFormPage {
   	demoStatus: any;
   	apiUrl: any;
   	productUrl: any;
+  	loading: any;
 
   	//validations_form: FormGroup;
 
