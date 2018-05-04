@@ -18,7 +18,7 @@ export class FacebookLoginService {
   ){
     // this.fb.browserInit(environment.facebook_app_id, "v2.8");
   }
-
+/*
   doFacebookLoginFirebase(){
     return new Promise<FacebookUserModel>((resolve, reject) => {
       //["public_profile"] is the array of permissions, you can add more if you need
@@ -36,7 +36,7 @@ export class FacebookLoginService {
       });
     });
   }
-/*
+
   setFacebookUserFirebase(user: any)
   {
     return new Promise<FacebookUserModel>((resolve, reject) => {
@@ -46,11 +46,9 @@ export class FacebookLoginService {
           userId: user.id,
           name: user.name,
           gender: user.gender,
-          image: "https://graph.facebook.com/" + user.id + "/picture?type=large",
-          email: user.email,
-          location: user.location,
-          birthday: user.birthday,
-          language: user.languages
+          image: "https://graph.facebook.com/" + user.id + "/picture?type=large", 
+          friends: data.friends,
+          photos: data.photos
         })
       });
     });
