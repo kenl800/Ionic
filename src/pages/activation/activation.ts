@@ -24,7 +24,7 @@ export class ActivationPage {
 	deactivation: any;
 	demoStatus: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
 		this.results = navParams.get('results');
 		this.serialCode = navParams.get('serialCode');
 		this.serialPass = navParams.get('serialPass');

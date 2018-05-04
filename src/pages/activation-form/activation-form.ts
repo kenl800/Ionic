@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 //import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -31,6 +31,9 @@ export class ActivationFormPage {
 	scanStatus = false;
   	user: FacebookUserModel = new FacebookUserModel();
   	demoStatus: any;
+  	apiUrl: any;
+  	productUrl: any;
+
   	//validations_form: FormGroup;
 
 
@@ -40,6 +43,7 @@ export class ActivationFormPage {
 		public restProvider: RestProvider,
 		public facebookLoginService: FacebookLoginService,
    		public modal: ModalController,
+   		public loadingCtrl: LoadingController
    		//public formBuilder: FormBuilder
    	) 
 	{
@@ -50,6 +54,7 @@ export class ActivationFormPage {
 	}
 
 	ionViewDidLoad() {
+		this.loading = this.loadingCtrl.create();
 		this.facebookLoginService.getFacebookUser()
 	    .then((user) => {
 	      this.user = user;
