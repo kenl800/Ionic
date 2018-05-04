@@ -36,7 +36,7 @@ export class FacebookLoginService {
       });
     });
   }
-
+/*
   setFacebookUserFirebase(user: any)
   {
     return new Promise<FacebookUserModel>((resolve, reject) => {
@@ -55,7 +55,7 @@ export class FacebookLoginService {
       });
     });
   }
-
+*/
   doFacebookLogin()
   {
     return new Promise<FacebookUserModel>((resolve, reject) => {
