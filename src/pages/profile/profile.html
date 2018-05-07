@@ -48,11 +48,9 @@
       <ion-col no-padding width-70>
         <p class="user-description">{{user.email}}</p>
       </ion-col>
-      <div *ngFor="let result of results">
-        <ion-col no-padding width-30>
-          <ion-icon name="qr-scanner" (click)="createCode(result.u_id)" style="zoom:2.0"></ion-icon>
-        </ion-col>
-      </div>
+      <ion-col no-padding width-30 *ngFor="let result of results"> 
+        <ion-icon name="qr-scanner" (click)="createCode(result.u_id)" style="zoom:2.0"></ion-icon>
+      </ion-col>
       <!-- Soon to hide -->
       <ion-col no-padding width-100>
         <p class="user-description">{{user.userId}}</p>

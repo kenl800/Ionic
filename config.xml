@@ -89,6 +89,7 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
@@ -126,8 +127,7 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
-    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.2" />
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
         <string>For Barcode Scanning</string>
     </edit-config>
