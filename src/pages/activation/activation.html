@@ -25,10 +25,17 @@
     <p>expired_date: {{result.expired_date}}</p>
   </ion-item>
   <button ion-button block ion-button (click)="generateUserId()" class="button">[Developer] Facebook login</button>
-  <button ion-button block ion-button (click)="deactivateProduct()" class="button">[Developer] Deactivate Product</button>
+  <button ion-button block ion-button (click)="presentAlert()" class="button">[Developer] Deactivate Product</button>
 
 </ion-content>
 
 <ion-footer>
-  <button ion-button block ion-button (click)="activateProduct()" class="button">Activate Product</button>
+  <div *ngFor="let result of results">
+    <div *ngIf="result.result.seller_name == null">
+      <button ion-button block ion-button (click)="activateProduct()" class="button">Activate Product</button>
+    </div>
+    <div *ngIf="result.result.seller_name != null">
+      <button ion-button block ion-button (click)="activateProduct()" [disabled]=true class="button">Activate Product</button>
+    </div>
+  </div>
 </ion-footer>

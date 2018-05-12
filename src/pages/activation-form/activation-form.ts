@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
 //import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -7,6 +7,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { FacebookUserModel } from '../facebook-login/facebook-user.model';
 import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
+import { ListingPage } from '../listing/listing';
 /**
  * Generated class for the ActivationFormPage page.
  *
@@ -34,6 +35,7 @@ export class ActivationFormPage {
   	apiUrl: any;
   	productUrl: any;
   	loading: any;
+  	toast: any;
 
   	//validations_form: FormGroup;
 
@@ -44,7 +46,8 @@ export class ActivationFormPage {
 		public restProvider: RestProvider,
 		public facebookLoginService: FacebookLoginService,
    		public modal: ModalController,
-   		public loadingCtrl: LoadingController
+   		public loadingCtrl: LoadingController,
+   		private toastCtrl: ToastController
    		//public formBuilder: FormBuilder
    	) 
 	{
@@ -134,5 +137,35 @@ export class ActivationFormPage {
 	      this.submitresults = Array.of(this.submitresults);
 	      console.log(this.submitresults);
 		});
+		this.presentLoadingDefault();
+	}
+
+	presentToast() {
+		let toast = this.toastCtrl.create({
+			message: 'Activation has been completed',
+			duration: 3000,
+			position: 'middle'
+		});
+
+		toast.onDidDismiss(() => {
+			console.log('Dismissed toast');
+		});
+
+		toast.present();
+	}
+
+	presentLoadingDefault() {
+	  let loading = this.loadingCtrl.create({
+	    content: 'Activating Product...'
+	  });
+
+	  loading.present();
+
+	  setTimeout(() => {
+	    loading.dismiss();
+	    this.navCtrl.pop();
+	    this.navCtrl.pop();
+		this.presentToast();
+	  }, 3000);
 	}
 }

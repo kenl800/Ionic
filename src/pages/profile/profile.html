@@ -12,18 +12,19 @@
       </ion-col>
       <ion-col no-padding>
         <ion-row class="social-presence-row">
-          <ion-col width-50 class="social-presence-item">
-            <a (click)="goToFollowersList()">
-              <h2 class="social-presence-value">{{profile.followers.length}}</h2>
-              <h4 class="social-presence-title">{{'FOLLOWERS' | translate }}</h4>
+          <ion-col width-100 class="social-presence-item" *ngFor="let result of results">
+            <a>
+              <h4 class="social-presence-value">Member Points: {{incentive}} </h4>
             </a>
           </ion-col>
+          <!--
           <ion-col width-50 class="social-presence-item">
             <a (click)="goToFollowingList()">
               <h2 class="social-presence-value">{{profile.following.length}}</h2>
               <h4 class="social-presence-title">{{'FOLLOWING' | translate }}</h4>
             </a>
           </ion-col>
+          -->
         </ion-row>
         <ion-row class="profile-action-row">
           <ion-col no-padding>
