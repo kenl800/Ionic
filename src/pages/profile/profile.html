@@ -116,3 +116,12 @@
   -->
   </div>
 </ion-content>
+<!-- 
+<ion-footer *ngFor="let result of results">
+  <button ion-button block small (click)="claimFormSeller(result.u_id)">Claim Form (Seller/Dealer)</button>
+  <button ion-button block small (click)="claimFormService(result.u_id)">Claim Form (Service Center)</button>
+-->
+<ion-footer>
+  <button ion-button block small (click)="claimFormSeller()">Claim Form (Seller/Dealer)</button>
+  <button ion-button block small (click)="claimFormService()">Claim Form (Service Center)</button>
+</ion-footer>

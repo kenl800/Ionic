@@ -1,0 +1,70 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Service Status</ion-title>
+		<ion-buttons end>
+			<button ion-button (click)="SaveCurrent()">Save</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+		<ion-row>
+			<ion-col width-85>Item Received by Service Centre</ion-col>
+			<ion-col width-15><ion-toggle [(ngModel)]="itemReceived" #ctl="ngModel"></ion-toggle></ion-col>
+		</ion-row>
+	</ion-list>
+	<ion-list>
+		<ion-row>
+			<ion-col width-85>Checking In Progress</ion-col>
+			<ion-col width-15><ion-toggle [(ngModel)]="itemChecking" #ctl="ngModel"></ion-toggle></ion-col>
+		</ion-row>
+	</ion-list>
+
+	<!-- -->
+	<ion-list>
+		<ion-row>
+			<ion-col width-85>Payment Required</ion-col>
+			<ion-col width-15><ion-toggle [(ngModel)]="paymentRequired" #ctl="ngModel"></ion-toggle></ion-col>
+		</ion-row>
+		<div *ngIf="paymentRequired == true">
+			<br><br>
+				<ion-row>
+					<ion-col width-10></ion-col>
+					<ion-col width-60>Amount Required: </ion-col>
+					<ion-col width-30>
+						<ion-input type="text" [(ngModel)]="amountRequired" #ctl="ngModel" value="" placeholder="Amount"></ion-input>
+					</ion-col>
+				</ion-row>
+			<br>
+			<ion-row>
+				<ion-col width-10></ion-col>
+				<ion-col width-60>Customer Approval</ion-col>
+				<ion-col width-15><ion-toggle [(ngModel)]="customerApproval" #ctl="ngModel"></ion-toggle></ion-col>
+				<ion-col width-15></ion-col>
+			</ion-row>
+			<br>
+			<ion-row>
+				<ion-col width-10></ion-col>
+				<ion-col width-60>Payment Received</ion-col>
+				<ion-col width-15><ion-toggle [(ngModel)]="paymentReceived" #ctl="ngModel"></ion-toggle></ion-col>
+				<ion-col width-15></ion-col>
+			</ion-row>
+		</div>
+	</ion-list>
+
+	<!-- -->
+	<ion-list>
+		<ion-row>
+			<ion-col width-85>Phone Fixed</ion-col>
+			<ion-col width-15><ion-toggle [(ngModel)]="phoneFixed" #ctl="ngModel"></ion-toggle></ion-col>
+		</ion-row>
+	</ion-list>
+	<ion-list>
+		<ion-row>
+			<ion-col width-85>Phone Delivered out to Dealer</ion-col>
+			<ion-col width-15><ion-toggle [(ngModel)]="phoneDelivered" #ctl="ngModel"></ion-toggle></ion-col>
+		</ion-row>
+	</ion-list>
+</ion-content>

@@ -10,6 +10,8 @@ import { FacebookUserModel } from '../facebook-login/facebook-user.model';
 import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../../providers/rest/rest';
+import { SearchSellerPage } from '../search-seller/search-seller';
+import { SearchServicePage } from '../search-service/search-service';
 
 import 'rxjs/Rx';
 
@@ -59,7 +61,7 @@ export class ProfilePage {
     this.facebookLoginService.getFacebookUser()
     .then((user) => {
       this.user = user;
-      
+
       this.apiUrl = "https://care.x-one.asia/api/social_login/" + this.user.userId;
       this.getFbUser(this.apiUrl);
 
@@ -107,6 +109,22 @@ export class ProfilePage {
     // close the menu when clicking a link from the menu
     this.menu.close();
     this.app.getRootNav().push(SettingsPage);
+  }
+
+  claimFormSeller(userId) {
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    this.app.getRootNav().push(SearchSellerPage, {
+      userId: userId
+    });
+  }
+
+  claimFormService(userId) {
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    this.app.getRootNav().push(SearchServicePage, {
+      userId: userId
+    });
   }
 
   onSegmentChanged(segmentButton: SegmentButton) {

@@ -1,0 +1,46 @@
+<!--
+  Generated template for the SellerFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Claim Form (Seller)</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <ion-input type="text" [disabled]="true" [(ngModel)]="phoneImei" #ctl="ngModel" value=""></ion-input> -->
+
+	<ion-input type="text" [(ngModel)]="orderId" #ctl="ngModel" value="" placeholder="order ID"></ion-input>
+	<ion-input type="text" [(ngModel)]="userId" #ctl="ngModel" value="" placeholder="user Id"></ion-input>
+	<ion-input type="text" [(ngModel)]="serialCode" #ctl="ngModel" value="" placeholder="serial Code"></ion-input>
+	<ion-input type="text" [(ngModel)]="productName" #ctl="ngModel" value="" placeholder="product Name"></ion-input>
+	<!-- Current User (Seller) ID -->
+	<ion-input type="text" [(ngModel)]="sellerId" #ctl="ngModel" value="" placeholder="seller Id"></ion-input>
+
+	<ion-item-divider color="light">Phone IMEI</ion-item-divider>
+	<!-- IMEI No. -->
+	<ion-input type="text" [(ngModel)]="phoneImei" #ctl="ngModel" value="" placeholder="phone Imei"></ion-input>
+
+	<ion-item-divider color="light">Customer Info</ion-item-divider>
+	<!-- Customer Contact Details -->
+	<ion-input type="text" [(ngModel)]="cusNric" #ctl="ngModel" value="" placeholder="NRIC/Passport"></ion-input>
+	<ion-input type="text" [(ngModel)]="cusNo" #ctl="ngModel" value="" placeholder="Contact No."></ion-input>
+
+	<ion-item-divider color="light">Issue</ion-item-divider>
+	<ion-item>
+  		<ion-textarea rows="5" placeholder="Issue..." [(ngModel)]="issue"></ion-textarea>
+ 	</ion-item>
+
+ 	<ion-item-divider color="light">Remarks</ion-item-divider>
+	<ion-item>
+  		<ion-textarea rows="5" placeholder="Remarks..." [(ngModel)]="remarks"></ion-textarea>
+ 	</ion-item>
+ 	<br><br><br>
+ 	<button ion-button block>Submit</button>
+</ion-content>

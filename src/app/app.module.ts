@@ -116,6 +116,15 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ActivationPage } from '../pages/activation/activation';
 import { ActivationFormPage } from '../pages/activation-form/activation-form';
+import { HistoryPage } from '../pages/history/history';
+import { HistoryDetailsPage } from '../pages/history-details/history-details';
+import { SelfServicePage } from '../pages/self-service/self-service';
+import { ClaimDetailsPage } from '../pages/claim-details/claim-details';
+import { SearchSellerPage } from '../pages/search-seller/search-seller';
+import { SearchServicePage } from '../pages/search-service/search-service';
+import { SellerFormPage } from '../pages/seller-form/seller-form';
+import { ServiceStatusPage } from '../pages/service-status/service-status';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -150,7 +159,14 @@ export function createTranslateLoader(http: HttpClient) {
     ItemDetailsPage,
     ActivationPage,
     ActivationFormPage,
-
+    HistoryPage,
+    HistoryDetailsPage,
+    SelfServicePage,
+    ClaimDetailsPage,
+    SellerFormPage,
+    SearchSellerPage,
+    SearchServicePage,
+    ServiceStatusPage,
     //functionalities
     MapsPage,
     FunctionalitiesPage,
@@ -267,7 +283,15 @@ export function createTranslateLoader(http: HttpClient) {
     WordpressMenuPage,
     BlogCategoriesPage,
     ActivationPage,
-    ActivationFormPage
+    ActivationFormPage,
+    HistoryPage,
+    HistoryDetailsPage,
+    SelfServicePage,
+    ClaimDetailsPage,
+    SellerFormPage,
+    SearchSellerPage,
+    SearchServicePage,
+    ServiceStatusPage
   ],
   providers: [
     FeedService,

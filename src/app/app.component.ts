@@ -5,7 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Observable } from 'rxjs/Observable';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
-import { FormsPage } from '../pages/forms/forms';
+import { HistoryPage } from '../pages/history/history';
 import { LayoutsPage } from '../pages/layouts/layouts';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { SettingsPage } from '../pages/settings/settings';
@@ -62,7 +62,7 @@ export class MyApp {
         }
         Observable.forkJoin(
           this.translate.get('Dashboard'),
-          this.translate.get('aaa'),
+          this.translate.get('History'),
           this.translate.get('Store Locator'),
           this.translate.get('My Profile'),
           //this.translate.get('SETTINGS'),
@@ -71,7 +71,7 @@ export class MyApp {
         ).subscribe(data => {
           this.pages = [
             { title: data[0], icon: 'home', component: TabsNavigationPage },
-            { title: data[1], icon: 'settings', component: FormsPage },
+            { title: data[1], icon: 'ios-clock-outline', component: HistoryPage },
             { title: data[2], icon: 'pin', component: FunctionalitiesPage },
           ];
 

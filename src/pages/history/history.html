@@ -1,0 +1,108 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="header-logo">
+        <p style="text-align:center">History</p>
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-segment class="forms-examples-segment" [(ngModel)]="section" (ionChange)="onSegmentChanged($event)">
+	    <ion-segment-button value="purchase" (ionSelect)="onSegmentSelected($event)">
+	      Purchase History
+	    </ion-segment-button>
+	    <ion-segment-button value="claim" (ionSelect)="onSegmentSelected($event)">
+	      Claim History
+	    </ion-segment-button>
+	    <ion-segment-button value="incentive" (ionSelect)="onSegmentSelected($event)">
+	      Incentive
+	    </ion-segment-button>
+	</ion-segment>
+	<div [ngSwitch]="section" class="forms-wrapper">
+	    <div *ngSwitchCase="'purchase'" class="post-example-view">
+	      <ion-item>
+	      	<h3>Purchase History</h3>
+	      </ion-item>
+	      <div>
+	      	<ion-item (click)="purchaseItem(result)">
+	    		<ion-row padding-top padding-bottom>
+	    			<!-- Product Name -->
+	    			<h2>Stealth Armor Screen Protector</h2>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<!-- Dealer -->
+	      			<h4>Dealer: Positive Bonus Sdn Bhd</h4>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<!-- Date_Activated -->
+	      			<h4>Date of Purchase: 05-05-2018</h4>
+	      		</ion-row>
+	      		<ion-row padding>
+	      			<ion-col width-50>
+						<h4>Expires In</h4>      				
+	      			</ion-col>
+	      			<ion-col width-50>
+	      				<h4>Product Status</h4>
+	      			</ion-col>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<ion-col width-50>
+						<h4>350 Day(s)</h4>      				
+	      			</ion-col>
+	      			<ion-col width-50>
+	      				<h4>Active</h4>
+	      			</ion-col>
+	      		</ion-row>
+	      	</ion-item>
+	      </div>
+	    </div>
+	    <div *ngSwitchCase="'claim'" class="event-example-view">
+	      <ion-item>
+	      	<h3>Claim History</h3>
+	      </ion-item>
+	      <div>
+	      	<ion-item (click)="claimItem(result)">
+	    		<ion-row padding-top padding-bottom>
+	    			<!-- Product Name -->
+	    			<h2>Stealth Armor Screen Protector</h2>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<!-- Dealer -->
+	      			<h4>Dealer: Positive Bonus Sdn Bhd</h4>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<!-- Date_Activated -->
+	      			<h4>Date of Purchase: 05-05-2018</h4>
+	      		</ion-row>
+	      		<ion-row padding>
+	      			<ion-col width-50>
+						<h4>Expires In</h4>      				
+	      			</ion-col>
+	      			<ion-col width-50>
+	      				<h4>Product Status</h4>
+	      			</ion-col>
+	      		</ion-row>
+	      		<ion-row padding-left>
+	      			<ion-col width-50>
+						<h4>350 Day(s)</h4>      				
+	      			</ion-col>
+	      			<ion-col width-50>
+	      				<h4>Active</h4>
+	      			</ion-col>
+	      		</ion-row>
+	      	</ion-item>
+	      </div>
+	    </div>
+	    <div *ngSwitchCase="'incentive'" class="card-example-view">
+	      <ion-item>
+	      	<h3>Incentive</h3>
+	      </ion-item>
+	    </div>
+  	</div>
+</ion-content>
