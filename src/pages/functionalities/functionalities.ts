@@ -30,14 +30,32 @@ export class FunctionalitiesPage {
   a: any;
   c: any;
   d: any;
-
+  results: any;
+  temp: any;
+  x: any;
+  y: any;
+  newResult: any;
 
   constructor(public restProvider: RestProvider,public navCtrl: NavController,private geolocation: Geolocation){
       this.getUserLocation();
-      
+      this.doRefresh(0);
     }
 
-  results: any;
+    
+  itemTapped(result,distance) {
+    this.navCtrl.push(ItemDetailsPage, 
+      {
+        id: result.id,
+        name: result.name,
+        address: result.address,
+        lat: result.lat,
+        lng: result.lng,
+        contact: result.cms_store_contact,
+        email: result.cms_store_email,
+        claimStatus: result.claim_status,
+        distance: distance
+      });
+  }
 
   getUserLocation(){
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -53,20 +71,31 @@ export class FunctionalitiesPage {
     this.parseUrl = 'https://care.x-one.asia/api/json_location_list?lat=' + lat + '&lon=' + lng;
     this.restProvider.getUsers(this.parseUrl)
     .then(data => {
-      this.results = data;
-      console.log(this.results);
-    });
-  }
+        this.results = data;
 
-  itemTapped(result: any) {
-    this.navCtrl.push(ItemDetailsPage, 
-      {
-        id: result.id,
-        name: result.name,
-        address: result.address,
-        lat: result.lat,
-        lng: result.lng
-      });
+        this.newResult = this.results;
+        console.log(this.newResult);
+
+        this.x = 0;
+        this.y = 0;
+        while (this.x < this.results.length ){
+            // put distance into every results array
+            this.results[this.x].distance =  this.getDistance(lat,lng,this.results[this.x].lat,this.results[this.x].lng);
+            while (this.y < this.results.length){
+            //console.log(this.newResult[this.y].distance);
+            //Problem -> How to initialize newResult[y]
+                if (this.newResult[this.y].distance < this.results[this.x].distance ){
+                    this.temp = this.results[this.x];
+                    this.results[this.x] = this.newResult[this.y];
+                    this.newResult[this.y] = this.temp;
+                }
+                this.y = this.y + 1;
+            }
+            this.x = this.x + 1;
+        }
+        //console.log(this.newResult);
+
+    });
   }
 
 
@@ -78,10 +107,20 @@ export class FunctionalitiesPage {
     this.a = Math.sin(this.dLat/2) * Math.sin(this.dLat/2) + Math.cos(this.deg2rad(userLat)) * Math.cos(this.deg2rad(placeLat)) * Math.sin(this.dLon/2) * Math.sin(this.dLon/2); 
     this.c = 2 * Math.atan2(Math.sqrt(this.a), Math.sqrt(1-this.a)); 
     this.d = this.R * this.c; // Distance in km
-    return Number((this.d).toFixed(2));
+    return Number((this.d).toFixed(1));
   }
 
   deg2rad(deg) {
     return deg * (Math.PI/180)
+  }
+
+  doRefresh(refresher){
+      this.getUserLocation();
+
+      if (refresher != 0){
+        setTimeout(() => {
+          refresher.complete();
+        }, 1000);
+      }
   }
 }

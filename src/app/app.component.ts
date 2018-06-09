@@ -3,6 +3,7 @@ import { Platform, MenuController, Nav, App, ToastController } from 'ionic-angul
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Observable } from 'rxjs/Observable';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
 import { HistoryPage } from '../pages/history/history';
@@ -14,6 +15,7 @@ import { FirebaseLoginPage } from '../pages/firebase-integration/firebase-login/
 import { WordpressMenuPage } from '../pages/wordpress-integration/wordpress-menu/wordpress-menu';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make WalkthroughPage the root (or first) page
-  rootPage: any = WalkthroughPage;
+  rootPage: any = LoginPage;
   // rootPage: any = TabsNavigationPage;
   textDir: string = "ltr";
 
@@ -38,7 +40,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public statusBar: StatusBar,
     public translate: TranslateService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private oneSignal: OneSignal
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
@@ -48,10 +51,22 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.splashScreen.hide();
       this.statusBar.styleDefault();
+
+        this.oneSignal.startInit('c8dfa276-1300-4be7-a83f-aafd4a028bd8');
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+        
+        this.oneSignal.handleNotificationReceived().subscribe(() => {
+
+        });
+        
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+
+        });
+        this.oneSignal.endInit();
     });
 
     this.translate.onLangChange.subscribe((event: LangChangeEvent) =>
-      {
+    {
         if(event.lang == 'ar')
         {
           platform.setDir('rtl', true);
@@ -83,7 +98,7 @@ export class MyApp {
           ];
 
         });
-      });
+    });
 
   }
 

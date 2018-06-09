@@ -12,9 +12,9 @@
       </ion-col>
       <ion-col no-padding>
         <ion-row class="social-presence-row">
-          <ion-col width-100 class="social-presence-item" *ngFor="let result of results">
+          <ion-col width-100 class="social-presence-item" *ngFor="let incentive of results">
             <a>
-              <h4 class="social-presence-value">Member Points: {{incentive}} </h4>
+              <h4 class="social-presence-value">Member Points: {{incentive.cms_product_incentive_rate}} </h4>
             </a>
           </ion-col>
           <!--
@@ -116,13 +116,24 @@
     </div>
   -->
   </div>
+  <br><br>
+    <!-- <ion-row class="user-content" (click)="goMyStores(user.userId)"> --> <!-- Exact -->
+    <ion-row class="user-content" (click)="goMyStores('140')">
+      <ion-col width-25 class="logo-align" padding-left><ion-icon style="zoom:1.5" ios="ios-home" md="md-home"></ion-icon></ion-col>
+      <ion-col width-75><p>My Stores</p></ion-col>
+    </ion-row>
 </ion-content>
 <!-- 
 <ion-footer *ngFor="let result of results">
   <button ion-button block small (click)="claimFormSeller(result.u_id)">Claim Form (Seller/Dealer)</button>
   <button ion-button block small (click)="claimFormService(result.u_id)">Claim Form (Service Center)</button>
 -->
-<ion-footer>
-  <button ion-button block small (click)="claimFormSeller()">Claim Form (Seller/Dealer)</button>
-  <button ion-button block small (click)="claimFormService()">Claim Form (Service Center)</button>
+<!--
+<ion-footer padding>
+  <button ion-button block (click)="claimFormSeller()">      1. Submit Claim (Seller/Dealer)</button>
+  <button ion-button block (click)="claimSellerTracking()">  2. Submit Claim Tracking (Seller/Dealer)</button>
+  <button ion-button block (click)="claimFormService()">     3. Claim Check (Service Center)</button>
+  <button ion-button block (click)="claimServiceTracking()"> 4. Claim Tracking (Service Center)</button> 
+  <button ion-button block (click)="claimArrival()">         5. Claim Arrival (Seller/Dealer)</button> 
 </ion-footer>
+-->

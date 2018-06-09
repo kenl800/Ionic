@@ -8,11 +8,22 @@
         <p style="text-align:center">History</p>
       </div>
     </ion-title>
+    <ion-buttons end>
+		<button ion-button (click)="AddClaim()">Add Claim</button>
+	</ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+	<ion-refresher (ionRefresh)="doRefresh($event);doRefresh2($event);">
+		<ion-refresher-content
+			pullingText="Refresh"
+			pullingIcon="arrow-dropdown"
+			refreshingSpinner="Circle"
+			refreshingText="Refreshing..."
+		></ion-refresher-content>
+	</ion-refresher>
 	<ion-segment class="forms-examples-segment" [(ngModel)]="section" (ionChange)="onSegmentChanged($event)">
 	    <ion-segment-button value="purchase" (ionSelect)="onSegmentSelected($event)">
 	      Purchase History
@@ -20,14 +31,16 @@
 	    <ion-segment-button value="claim" (ionSelect)="onSegmentSelected($event)">
 	      Claim History
 	    </ion-segment-button>
+	    <!--
 	    <ion-segment-button value="incentive" (ionSelect)="onSegmentSelected($event)">
 	      Incentive
 	    </ion-segment-button>
+		-->
 	</ion-segment>
 	<div [ngSwitch]="section" class="forms-wrapper">
 	    <div *ngSwitchCase="'purchase'" class="post-example-view">
 	      <ion-item>
-	      	<h3>Purchase History</h3>
+	      	<h3>Purchase History <br> [Incomplete - Insufficient Data]</h3>
 	      </ion-item>
 	      <div>
 	      	<ion-item (click)="purchaseItem(result)">
@@ -66,23 +79,49 @@
 	      <ion-item>
 	      	<h3>Claim History</h3>
 	      </ion-item>
-	      <div>
+	    <div>
+
+	    <ion-item-group *ngFor="let group of groups">
+			<ion-item-divider sticky>
+		        <ion-label>
+		          {{group.cms_claim_date_group}}
+		        </ion-label>
+		    </ion-item-divider>
+		    <div *ngFor="let result of results" >
+			    <ion-item *ngIf="group.cms_claim_date_group == result.cms_claim_date_group" (click)="claimItem(result)">
+		      		<p>{{result.cms_claim_id}}</p>
+		      		<p>Latest Status: <b>{{result.cms_claim_status_name}}</b></p>
+		      		<p>Customer Name: {{result.fullname}}</p>
+		      		<p>Serial No: {{result.cms_claim_serial_id}}</p>
+		      		<p>Phone Model: {{result.cms_claim_phone_model}}</p>
+		      		<p>Phone Imei: {{result.cms_claim_phone_imei}}</p>
+		      		<p>Issue: {{result.cms_claim_issue}}</p>
+		      		<p>Remark: {{result.cms_claim_remark}}</p>
+		      		<!-- <p>{{result.cms_claim_status_id}}</p> -->
+		      		<!-- <p>{{result.cms_claim_status_name}}</p> -->
+		      		<p>Date Claimed: {{result.cms_claim_date_added}}</p>
+		      		<!-- <p>{{result.cms_claim_date_group}}</p> -->
+		      		<p>Tracking No: {{result.cms_claim_tracking_no_1}}</p>
+		      		<p>Tracking No 2: {{result.cms_claim_tracking_no_2}}</p>
+		      	</ion-item>
+		     </div>
+		</ion-item-group>
+
+	      	
+<!---	      
 	      	<ion-item (click)="claimItem(result)">
 	    		<ion-row padding-top padding-bottom>
-	    			<!-- Product Name -->
 	    			<h2>Stealth Armor Screen Protector</h2>
 	      		</ion-row>
 	      		<ion-row padding-left>
-	      			<!-- Dealer -->
 	      			<h4>Dealer: Positive Bonus Sdn Bhd</h4>
 	      		</ion-row>
 	      		<ion-row padding-left>
-	      			<!-- Date_Activated -->
 	      			<h4>Date of Purchase: 05-05-2018</h4>
 	      		</ion-row>
 	      		<ion-row padding>
 	      			<ion-col width-50>
-						<h4>Expires In</h4>      				
+						<h4>Expires In</h4>  																		    				
 	      			</ion-col>
 	      			<ion-col width-50>
 	      				<h4>Product Status</h4>
@@ -97,12 +136,15 @@
 	      			</ion-col>
 	      		</ion-row>
 	      	</ion-item>
+-->
 	      </div>
 	    </div>
+	    <!--
 	    <div *ngSwitchCase="'incentive'" class="card-example-view">
 	      <ion-item>
 	      	<h3>Incentive</h3>
 	      </ion-item>
 	    </div>
+		-->
   	</div>
 </ion-content>

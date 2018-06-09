@@ -13,6 +13,11 @@ import { RestProvider } from '../../providers/rest/rest';
 import { SearchSellerPage } from '../search-seller/search-seller';
 import { SearchServicePage } from '../search-service/search-service';
 
+import { SellerArrivalPage } from '../seller-arrival/seller-arrival';
+import { SellerTrackingPage } from '../seller-tracking/seller-tracking';
+import { ServiceTrackingPage } from '../service-tracking/service-tracking';
+
+
 import 'rxjs/Rx';
 
 @Component({
@@ -28,6 +33,8 @@ export class ProfilePage {
   scannedCode:any;
   apiUrl: any;
   results: any;
+  demoLogin: any;
+  userId: any;
 
   constructor(
     public menu: MenuController,
@@ -44,6 +51,8 @@ export class ProfilePage {
     this.display = "list";
 
     this.loading = this.loadingCtrl.create();
+    this.demoLogin = this.restProvider.demoId;
+    console.log(this.demoLogin);
   }
 
   ionViewDidLoad() {
@@ -73,6 +82,15 @@ export class ProfilePage {
     });
   }
 
+  getFbUser(url) {
+    this.restProvider.getFbUser(url)
+    .then(data => {
+       this.results = data;
+       this.results = Array.of(this.results);
+       console.log(this.results);
+    });
+   }
+
   createCode(uniqueId) {
     this.createdCode = uniqueId;
     console.log(this.createdCode);
@@ -81,13 +99,6 @@ export class ProfilePage {
     });
   }
 
-  getFbUser(url) {
-    this.restProvider.getFbUser(url)
-    .then(data => {
-       this.results = data;
-       this.results = Array.of(this.results);
-    });
-   }
 
   goToFollowersList() {
     // close the menu when clicking a link from the menu
@@ -111,21 +122,14 @@ export class ProfilePage {
     this.app.getRootNav().push(SettingsPage);
   }
 
-  claimFormSeller(userId) {
-    // close the menu when clicking a link from the menu
+  goMyStores(userId) {
+    // updated to My Store
     this.menu.close();
-    this.app.getRootNav().push(SearchSellerPage, {
+    this.app.getRootNav().push(ServiceTrackingPage, {
       userId: userId
     });
   }
 
-  claimFormService(userId) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    this.app.getRootNav().push(SearchServicePage, {
-      userId: userId
-    });
-  }
 
   onSegmentChanged(segmentButton: SegmentButton) {
     // console.log('Segment changed to', segmentButton.value);

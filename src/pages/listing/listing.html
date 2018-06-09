@@ -3,19 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      <div class="header-logo">
-        <!--- 
-          <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> 
-        -->
-        <p style="text-align:center">XONE CARE</p>
-      </div>
+    <ion-title class="menu-title">
+        XONE CARE
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="listing-content" padding>
+<ion-content class="listing-content">
+
+ <!-- Testing for notifications-->
+  <!-- <iframe width="100%" height="30%" src="https://www.x-one.asia/wp-content/uploads/2018/05/6-1920-x-815-iphone-x-1.jpg" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);"></iframe> -->
+  <!-- <iframe width="100%" height="40%" src="http://www.x-one.asia"></iframe> -->
   <!-- QR Code Part -->
+  <ion-img src="https://www.x-one.asia/wp-content/uploads/2018/06/8-1920-x-815-HUAWEI-P20-AND-P20-Pro-new-300x127.jpg"></ion-img>
   <br><br>
   <button ion-button block icon-left (click)="scanCode()" color="secondary">
     <ion-icon name="qr-scanner"></ion-icon>Scan Code</button>

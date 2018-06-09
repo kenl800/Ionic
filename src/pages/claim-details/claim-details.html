@@ -15,16 +15,53 @@
 
 
 <ion-content padding>
-	<p>Name: Sum Ting Wong</p>
-	<p>Phone: iPhone 7</p>
-	<p>IMEI No.: 656677889990</p>
-	<p>Date Claimed: 06/06/2018</p>
-	<p>Dealer-In-Charge: Positive Bonus Sdn Bhd.</p>
+	<ion-refresher (ionRefresh)="doRefresh($event,obtainedResult.cms_claim_id);">
+		<ion-refresher-content
+			pullingText="Refresh"
+			pullingIcon="arrow-dropdown"
+			refreshingSpinner="Circle"
+			refreshingText="Refreshing..."
+		></ion-refresher-content>
+	</ion-refresher>
+	<p>Claim No #{{obtainedResult.cms_claim_id}}</p>
+	<p>Name: {{obtainedResult.fullname}}</p>
+	<p>Phone: {{obtainedResult.cms_claim_phone_model}}</p>
+	<p>Issue: {{obtainedResult.cms_claim_issue}}</p>
+	<p>Remark: {{obtainedResult.cms_claim_remark}}</p>
+	<ion-row>
+		<ion-col width-70>
+			<p>IMEI No.: {{obtainedResult.cms_claim_phone_imei}}</p>
+			<p>Date Claimed: {{obtainedResult.cms_claim_date_group}}</p>
+		</ion-col>
+		<ion-col width-30>
+			<button ion-button block (click)="showOptions(obtainedResult.cms_claim_id)">Update <br>Status</button>
+		</ion-col>
+	</ion-row>
+	<p>Dealer-In-Charge: Positive Bonus Sdn Bhd.</p> <!-- incomplete -->
 	<br>
 	<ion-row>
 		<ion-col>Date</ion-col>
 		<ion-col>Status</ion-col>
 	</ion-row>
+	<div *ngFor="let result of getResults">
+		<ion-row>
+			<ion-col>{{result.cms_claim_status_date_added}}</ion-col>
+			<ion-col>{{result.cms_claim_status_name}}</ion-col>
+		</ion-row>
+		<ion-row *ngIf="result.cms_claim_status_id == '2'">
+			<ion-col>&nbsp;</ion-col>
+			<ion-col>Tracking Number: {{result.cms_claim_tracking_no_1}}<br>&nbsp;</ion-col>
+		</ion-row>
+		<ion-row *ngIf="result.cms_claim_status_id == '5'">
+			<ion-col>&nbsp;</ion-col>
+			<ion-col>Amount Needed: {{result.cms_claim_amount_required}}<br>&nbsp;</ion-col>
+		</ion-row>
+		<ion-row *ngIf="result.cms_claim_status_id == '9'">
+			<ion-col>&nbsp;</ion-col>
+			<ion-col>Tracking Number: {{result.cms_claim_tracking_no_2}}<br>&nbsp;</ion-col>
+		</ion-row>
+	</div>
+	<!-- 
 	<ion-row>
 		<ion-col width-35><p>08/06/2018</p></ion-col>
 		<ion-col width-65><p>Item Received by Service Centre</p></ion-col>
@@ -45,4 +82,5 @@
 		<ion-col width-35><p>16/06/2018</p></ion-col>
 		<ion-col width-65><p>Item Delivered to Dealer</p></ion-col>
 	</ion-row>
+	-->
 </ion-content>

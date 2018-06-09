@@ -1,6 +1,14 @@
 login-page {
 	.login-content
 	{
+		background-color: #6C6B6B;
+
+		.intro-image-row
+			{
+				justify-content: center;
+				margin-top: 50px;
+			}
+
 		.alt-options
 		{
 			.button
@@ -23,7 +31,7 @@ login-page {
 			.signup-button
 			{
 				font-weight: 500;
-				color: $theme-color-2;
+				color: $white-d;
 
 				.button-inner
 				{

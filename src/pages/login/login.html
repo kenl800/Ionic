@@ -5,29 +5,48 @@
 </ion-header>
 
 <ion-content class="login-content auth-content">
-  <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
-    <ion-item>
-      <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-    </ion-item>
-    <show-hide-container>
+  <!-- ./assets/images/X-OneCare/XONE-LOGO.png -->
+     <ion-row class="intro-image-row">
+        <ion-col center width-64 no-padding>
+          <preload-image [ratio]="{w:1, h:1/2}" src="./assets/images/X-OneCare/XONE-LOGO.png" alt="slide 2 img" title="ion2FullApp"></preload-image>
+        </ion-col>
+      </ion-row>
+    <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
       <ion-item>
-        <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
       </ion-item>
-    </show-hide-container>
-    <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid">{{'LOG_IN' | translate}}</button>
-  </form>
-  <ion-row class="alt-options">
-    <ion-col no-padding width-50>
-      <button ion-button block clear class="forgot-button" (click)="goToForgotPassword()">{{'FORGOT_PASSWORD?' | translate }}</button>
-    </ion-col>
-    <ion-col no-padding width-50>
-      <button ion-button block clear class="signup-button" (click)="goToSignup()">{{'SIGN_UP!' | translate}}</button>
-    </ion-col>
-  </ion-row>
-  <p class="auth-divider">
-    Or
-  </p>
-  <button ion-button block class="facebook-auth-button" (click)="doFacebookLogin()">Log in with Facebook</button>
+      <show-hide-container>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+        </ion-item>
+      </show-hide-container>
+      <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid">{{'LOG_IN' | translate}}</button>
+    </form>
+    <ion-row class="alt-options">
+      <ion-col no-padding width-50>
+        <button ion-button block clear class="forgot-button" (click)="goToForgotPassword()">{{'FORGOT_PASSWORD?' | translate }}</button>
+      </ion-col>
+      <ion-col no-padding width-50>
+        <button ion-button block clear class="signup-button" (click)="goToSignup()">{{'SIGN_UP!' | translate}}</button>
+      </ion-col>
+    </ion-row>
+    <p class="auth-divider">
+      Or
+    </p>
+    <button ion-button block class="facebook-auth-button" (click)="doFacebookLogin()">Log in with Facebook</button>
+    
+    <!-- 
+    <br><br><br>
+    <button ion-button block class="auth-action-button login-button" (click)="demoLogin(1765500746834059)" type="submit">Log In as Client</button>
+    <button ion-button block class="auth-action-button login-button" (click)="demoLogin(2121306964551433)" type="submit">Log In as SalesPerson (Dealer)</button>
+    <button ion-button block class="auth-action-button login-button" (click)="demoLogin(1910043865686238)" type="submit">Log In as SalesPerson (Normal)</button>
+    <button ion-button block class="auth-action-button login-button" (click)="demoLogin(10160850273030355)" type="submit">Log In as Service Centre</button>
+  -->
+    <!-- 
   <button ion-button block class="google-auth-button" (click)="doGoogleLogin()">Log in with Google</button>
   <button ion-button block class="twitter-auth-button" (click)="doTwitterLogin()">Log in with Twitter</button>
+  -->
 </ion-content>
+<ion-footer class="login-content auth-content">
+ 
+</ion-footer>

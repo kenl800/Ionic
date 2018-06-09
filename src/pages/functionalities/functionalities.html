@@ -3,27 +3,34 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{'Store Locator' | translate}}</ion-title>
+    <ion-title class="menu-title">{{'Store Locator' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="functionalities-content">
-  <ion-list class="functionalities-list">
-    <p>User Location: {{userLat}} & {{userLng}} </p>
+<ion-content padding>
+  <!-- <ion-list class="functionalities-list"> -->
+    <!-- <p>User Location: {{userLat}} & {{userLng}} </p> -->
     <!-- <p>{{parseUrl}}</p> -->
-    <button class="list-item" ion-item *ngFor="let result of results" (click)="itemTapped(result)">
-      <ion-row no-padding>
-        <ion-col no-padding class="item-content">
-          <h2>{{result.name}}</h2> <br>
-          <p>{{result.address}}</p>
+    <ion-refresher (ionRefresh)="doRefresh($event);">
+      <ion-refresher-content
+        pullingText="Refresh"
+        pullingIcon="arrow-dropdown"
+        refreshingSpinner="Circle"
+        refreshingText="Refreshing..."
+      ></ion-refresher-content>
+    </ion-refresher>
+    <div class="cover-color">
+      <ion-row class="functionalities-content" *ngFor="let result of results" (click)="itemTapped(result,getDistance(userLat,userLng,result.lat,result.lng))">
+        <ion-col width-75 class="item-content">
+          <p class="title"><b>{{result.name}}</b></p>
+          <p class="info">{{result.address}}</p>
         </ion-col>
-        <ion-col no-padding width-10 class="item-icon">
-          <div class="item-note" item-right>
-            {{getDistance(userLat,userLng,result.lat,result.lng)}} km
+        <ion-col width-25 class="item-distance">
+          <div class="item-note" text-right>
+            {{getDistance(userLat,userLng,result.lat,result.lng)}}km &nbsp; <ion-icon name="arrow-forward"></ion-icon>
           </div>
-          <ion-icon name="arrow-forward"></ion-icon>
         </ion-col>
       </ion-row>
-    </button>
-  </ion-list>
+    </div>
+  <!-- </ion-list> -->
 </ion-content>

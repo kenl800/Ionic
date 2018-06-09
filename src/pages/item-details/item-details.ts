@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { InAppBrowser, AppAvailability, Device } from 'ionic-native';
 //import { Geolocation } from '@ionic-native/geolocation';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActionSheetController } from 'ionic-angular';
-
+import { SellerArrivalPage } from '../seller-arrival/seller-arrival';
+import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
   selector: 'page-item-details',
@@ -26,13 +27,31 @@ export class ItemDetailsPage {
   getlng: any;
   sanitizedUrl: any;
   mapurl: any;
+  getdistance: any;
+  getContact: any;
+  getEmail: any;
+  getClaimStatus: any;
 
-  	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer:DomSanitizer, public actionSheetCtrl: ActionSheetController) {
+  	constructor
+  	(
+  		public navCtrl: NavController, 
+  		public navParams: NavParams, 
+  		private sanitizer:DomSanitizer, 
+  		public actionSheetCtrl: ActionSheetController,
+  		private alertCtrl: AlertController,
+  		private toastCtrl: ToastController,
+		public restProvider: RestProvider
+
+  	) {
 	   this.getid = navParams.get('id'); 
 	   this.getname = navParams.get('name'); 
 	   this.getaddress = navParams.get('address'); 
 	   this.getlat = navParams.get('lat'); 
 	   this.getlng = navParams.get('lng'); 
+	   this.getdistance = navParams.get('distance');
+	   this.getContact = navParams.get('contact'); 
+	   this.getEmail = navParams.get('email'); 
+	   this.getClaimStatus = navParams.get('claimStatus'); 
 	   this.sanitizedUrl = this.sanitizeTheUrl(this.mapurl);
 	   this.mapurl = this.sanitizeTheUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD8eukMhKq-plpab6fStzMcBa9as_LnxG0&q=' + this.getlat + ',' + this.getlng);
   	}
@@ -90,6 +109,85 @@ export class ItemDetailsPage {
     		this.mapurl = this.sanitizeTheUrl('https://www.google.com/maps/embed/v1/streetview?key=AIzaSyD8eukMhKq-plpab6fStzMcBa9as_LnxG0&heading=-50&pitch=0&fov=55&location=' + this.getlat + ',' + this.getlng);
     	}
     }
+
+    confirmClaim(id,userId){
+    	let alert = this.alertCtrl.create({
+		  title: 'Claim as Store Owner?',
+		    message: 'Please confirm as the store owner, and fill in some details to confirm that it is your store.',
+		    buttons: [
+		      {
+		        text: 'Cancel',
+		        role: 'cancel',
+		        handler: () => {
+		          
+		        }
+		      },
+		      {
+		        text: 'Confirm',
+		        handler: () => {
+		        	//temporary testing purpose
+		        	this.fillClaim(id,141);
+		        }
+		      }
+		    ]
+		  });
+		  alert.present();
+    }
+
+    fillClaim(id,userId){
+    	this.navCtrl.push(SellerArrivalPage, 
+	      {
+	      	id: id,
+	      	userId: userId
+	      });
+    }
+
+    confirmJoin(id,userId){
+    	let alert = this.alertCtrl.create({
+		  title: 'Join Store?',
+		    message: 'Joining the store means you are a staff at this store. You will need to wait to be approved.',
+		    buttons: [
+		      {
+		        text: 'Cancel',
+		        role: 'cancel',
+		        handler: () => {
+		          
+		        }
+		      },
+		      {
+		        text: 'Confirm',
+		        handler: () => {
+		          	this.submitJoin(id,140);
+		          	this.presentToast();
+		        }
+		      }
+		    ]
+		  });
+		  alert.present();
+    }
+
+    submitJoin(id,userId) {
+    	this.getUrl = "http://care.x-one.asia/api/json_store_add_join?storeId=" + id + "&userId=" + userId;
+		this.restProvider.getProduct(this.getUrl)
+	    .then(data => {
+			this.getResults = data;
+			//console.log(this.getResults);
+		});
+    }
+
+    presentToast() {
+		let toast = this.toastCtrl.create({
+			message: 'Requested to join Store. Please wait for approval.',
+			duration: 3000,
+			position: 'middle'
+		});
+
+		toast.onDidDismiss(() => {
+			//console.log('Dismissed toast');
+		});
+
+		toast.present();
+	}
 
 /*
 	openInstagram() {

@@ -25,6 +25,8 @@ export class LoginPage {
   user: any;
   tempurl: any;
 
+  demoId: any;
+
 
   constructor(
     public nav: NavController,
@@ -37,7 +39,7 @@ export class LoginPage {
     this.main_page = { component: TabsNavigationPage };
 
     this.login = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('a', Validators.required),
       password: new FormControl('test', Validators.required)
     });
   }
@@ -114,7 +116,7 @@ export class LoginPage {
       this.restProvider.registerFB(this.fburl)
       .then(data => {
          this.results2 = data;
-         this.results2 = Array.of(this.results);
+         this.results2 = Array.of(this.results2);
       });
    }
 
@@ -125,7 +127,7 @@ export class LoginPage {
         this.restProvider.registerFB(this.fburl)
         .then(data => {
            this.results2 = data;
-           this.results2 = Array.of(this.results);
+           this.results2 = Array.of(this.results2);
         });
    }
 
@@ -179,4 +181,15 @@ export class LoginPage {
     this.nav.push(ForgotPasswordPage);
   }
 
+  /*
+  demoLogin(id) {
+    this.fburl = "https://care.x-one.asia/api/social_login/" + id;
+    this.restProvider.registerFB(this.fburl)
+    .then(data => {
+       this.demoId = data;
+       this.demoId = Array.of(this.demoId);
+       console.log(this.demoId);
+    });
+  }
+  */
 }

@@ -1,3 +1,46 @@
 page-item-details {
+	
+	.title-div{
 
+		.location-title{
+			font-size: 18px;
+			font-family: "Calibri";
+		}
+	}
+
+	.content-div{ 	
+		border-top: 1px solid grey;
+		.show-option{
+			-webkit-tap-highlight-color: #908585;
+		}
+
+		.logo-col{
+			align-self: center;
+		}
+
+		.address-col{
+			align-self: center;
+			font-size: 15px;
+			font-family: "Calibri";
+		}
+
+		.distance-col{
+			align-self: center;
+			font-size: 15px;
+			font-family: "Calibri";
+		}
+
+		.claim{
+			border: 1px solid #62FE0F;
+			color: #62FE0F;
+			font-size: 12px;
+		}
+
+		.join{
+			border: 1px solid red;
+			color: red;
+			font-size: 12px;
+		}
+
+	}
 }

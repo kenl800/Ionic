@@ -125,7 +125,14 @@ import { SearchServicePage } from '../pages/search-service/search-service';
 import { SellerFormPage } from '../pages/seller-form/seller-form';
 import { ServiceStatusPage } from '../pages/service-status/service-status';
 
+import { SellerArrivalPage } from '../pages/seller-arrival/seller-arrival';
+import { SellerTrackingPage } from '../pages/seller-tracking/seller-tracking';
+import { ServiceTrackingPage } from '../pages/service-tracking/service-tracking';
 
+//OneSignal
+import { OneSignal } from '@ionic-native/onesignal';
+//:pcalNotfications
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -167,6 +174,9 @@ export function createTranslateLoader(http: HttpClient) {
     SearchSellerPage,
     SearchServicePage,
     ServiceStatusPage,
+    SellerArrivalPage,
+    SellerTrackingPage,
+    ServiceTrackingPage,
     //functionalities
     MapsPage,
     FunctionalitiesPage,
@@ -291,7 +301,10 @@ export function createTranslateLoader(http: HttpClient) {
     SellerFormPage,
     SearchSellerPage,
     SearchServicePage,
-    ServiceStatusPage
+    ServiceStatusPage,
+    SellerArrivalPage,
+    SellerTrackingPage,
+    ServiceTrackingPage,
   ],
   providers: [
     FeedService,
@@ -327,7 +340,9 @@ export function createTranslateLoader(http: HttpClient) {
 		Crop,
 		EmailComposer,
     BarcodeScanner,
-    RestProvider
+    RestProvider,
+    OneSignal,
+    LocalNotifications
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

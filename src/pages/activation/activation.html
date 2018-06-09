@@ -18,23 +18,24 @@
     <p>date_activated: {{result.result.date_activated}}</p>
     <p>check_count: {{result.result.check_count}}</p>
     <p>buyer_name: {{result.result.buyer_name}}</p>
+    <p>buyer_name_2: {{result.result.buyer_name2}}</p>
     <p>seller_name: {{result.result.seller_name}}</p>
     <p>dealer_name: {{result.result.dealer_name}}</p>
     <p>product: {{result.result.product}}</p>
     <p>product_status: {{result.product_status}}</p>
     <p>expired_date: {{result.expired_date}}</p>
   </ion-item>
-  <button ion-button block ion-button (click)="generateUserId()" class="button">[Developer] Facebook login</button>
+<!--  <button ion-button block ion-button (click)="generateUserId()" class="button">[Developer] Facebook login</button> -->
   <button ion-button block ion-button (click)="presentAlert()" class="button">[Developer] Deactivate Product</button>
 
 </ion-content>
 
 <ion-footer>
   <div *ngFor="let result of results">
-    <div *ngIf="result.result.seller_name == null">
+    <div *ngIf="result.result.date_activated == '0000-00-00 00:00:00'">
       <button ion-button block ion-button (click)="activateProduct()" class="button">Activate Product</button>
     </div>
-    <div *ngIf="result.result.seller_name != null">
+    <div *ngIf="result.result.date_activated != '0000-00-00 00:00:00'">
       <button ion-button block ion-button (click)="activateProduct()" [disabled]=true class="button">Activate Product</button>
     </div>
   </div>

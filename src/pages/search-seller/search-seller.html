@@ -14,14 +14,59 @@
 
 
 <ion-content padding>
-	<ion-searchbar type="number" (keyup)="updateSearch($event)" show-cancel="true" placeholder="Search IMEI No."></ion-searchbar>
-	<ion-item (click)="selectResult()">
-		<p>Stealth Armor Screen Protector</p>
-		<p>Name: Ting Ling Ling</p>
-		<p>Phone Imei: {{this.searchResults}}</p>
-		<p>Dealer: Positive Bonus Sdn Bhd</p>
-		<p>Date of Purchase: 05-05-2018</p>
-		<p>Expires In: 350 Day(s)</p>
-		<p>Product Status: Active</p>
-	</ion-item>
+	<ion-segment class="forms-examples-segment" [(ngModel)]="section" (ionChange)="onSegmentChanged($event)">
+	    <ion-segment-button small value="imei" (ionSelect)="onSegmentSelected($event)">
+	      IMEI No.
+	    </ion-segment-button>
+	    <ion-segment-button small value="nric" (ionSelect)="onSegmentSelected($event)">
+	      Customer NRIC/Passport
+	    </ion-segment-button>
+	</ion-segment>
+	<br>
+	<div [ngSwitch]="section" class="forms-wrapper">
+	    <div *ngSwitchCase="'imei'" class="post-example-view">
+			<ion-searchbar type="number" (keyup)="updateSearch($event)" show-cancel="true" placeholder="Search IMEI No."></ion-searchbar>
+			<div *ngIf="outputResultsLength == 0">
+				<p>Results not found</p>
+			</div>
+			<div *ngIf="outputResultsLength >= 1">
+				<ion-item *ngFor="let result of outputResults" (click)="selectResult(result)">
+					<p>Stealth Armor Screen Protector</p> <!-- Incomplete -->
+					<p>Name: {{result.buyer_name}} {{result.buyer_name2}}</p>
+					<p>Customer IC/Passport: {{result.customer_NRIC}}</p>
+					<p>Phone Imei: {{result.phone_imei}}</p>
+					<p>Seller Name: {{result.seller_name}}</p>
+					<p>Dealer: Positive Bonus Sdn Bhd</p> <!-- Incomplete -->
+					<p>Date of Purchase: {{(result.date_activated)?.substring(0,10)}}</p>
+					<p>Expires In: 350 Day(s)</p> <!-- Incomplete -> Hard -->
+					<p>Product Status: Active</p> <!-- Incomplete -> Easy -->
+				</ion-item>
+			</div>
+		</div>
+	</div>
+	<div [ngSwitch]="section" class="forms-wrapper">
+	    <div *ngSwitchCase="'nric'" class="post-example-view">
+			<ion-searchbar type="number" (keyup)="updateSearch2($event)" show-cancel="true" placeholder="Search Customer NRIC/Passport">
+			</ion-searchbar>
+			<div *ngIf="outputResultsLength2 == 0">
+				<p>Results not found</p>
+			</div>
+			<div *ngIf="outputResultsLength2 >= 1">
+				<ion-item *ngFor="let result of outputResults2" (click)="selectResult(result)">
+					<p>Stealth Armor Screen Protector</p> <!-- Incomplete -->
+					<p>Name: {{result.buyer_name}} {{result.buyer_name2}}</p>
+					<p>Customer IC/Passport: {{result.customer_NRIC}}</p>
+					<p>Phone Imei: {{result.phone_imei}}</p>
+					<p>Seller Name: {{result.seller_name}}</p>
+					<p>Dealer: Positive Bonus Sdn Bhd</p> <!-- Incomplete -->
+					<p>Date of Purchase: {{(result.date_activated)?.substring(0,10)}}</p>
+					<p>Expires In: 350 Day(s)</p> <!-- Incomplete -> Hard -->
+					<p>Product Status: Active</p> <!-- Incomplete -> Easy -->
+				</ion-item>
+			</div>
+		</div>
+	</div>
 </ion-content>
+<ion-footer>
+<!--	<button ion-button block (click)="generateUserId()"></button> -->
+</ion-footer>

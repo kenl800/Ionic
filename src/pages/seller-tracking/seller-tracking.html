@@ -1,0 +1,39 @@
+<!--
+  Generated template for the SellerTrackingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar>
+		<ion-title>Tracking Number (Seller)</ion-title>
+		<ion-buttons end>
+			<button ion-button (click)="presentAlert(obtainedId,trackingNo)">Save</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!--<ion-input type="text" [(ngModel)]="phoneModel" #ctl="ngModel" value="" placeholder="Phone Model"></ion-input>
+	<ion-input type="text" [(ngModel)]="phoneImei" #ctl="ngModel" value="" placeholder="Phone IMEI"></ion-input>
+	<ion-input type="text" [(ngModel)]="userName" #ctl="ngModel" value="" placeholder="User Name"></ion-input>
+	<ion-input type="text" [(ngModel)]="dealerName" #ctl="ngModel" value="" placeholder="Dealer Name"></ion-input>
+	<ion-input type="text" [(ngModel)]="dateSubmit" #ctl="ngModel" value="" placeholder="Date Submitted"></ion-input>-->
+	<p>Claim No #{{obtainedId}}</p> 
+	<ion-row padding>
+		<div *ngIf="!scanStatus && getTracking == ''">
+			<ion-col width-85>
+	    		<ion-input type="text" placeholder="Scan or Key In Tracking Barcode" [(ngModel)]="trackingNo" #ctl="ngModel"></ion-input>
+	    	</ion-col>
+    	</div>
+    	<div *ngIf="getTracking != ''">
+    		<ion-col width-85>
+	    		<ion-input type="text" value="{{getTracking}}" [(ngModel)]="trackingNo" #ctl="ngModel"></ion-input>
+	    	</ion-col>
+    	</div>
+    	<ion-col width-15>
+    		<ion-icon ios="ios-barcode-outline" md="md-barcode" (click)="scanCode()" style="zoom:3.0;"></ion-icon>
+    	</ion-col>
+    </ion-row>
+</ion-content>

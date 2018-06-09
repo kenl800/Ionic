@@ -1,0 +1,34 @@
+<!--
+  Generated template for the SellerArrivalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Claim as Store Owner</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-input type="number" placeholder="Store ID" value="{{getid}}" [(ngModel)]="storeId" #ctl="ngModel"></ion-input>
+	<ion-input type="number" placeholder="User ID" value="{{getUserId}}" [(ngModel)]="userId" #ctl="ngModel"></ion-input>
+
+	<ion-input type="text" placeholder="Store Contact No." [(ngModel)]="storeContact" #ctl="ngModel"></ion-input>
+	<ion-input type="text" placeholder="Store Email" [(ngModel)]="storeEmail" #ctl="ngModel"></ion-input>
+	<br><br><br>
+	<ion-item-divider color="light">Upload Suruhanjaya Syarikat <br> Malaysia (SSM) Document</ion-item-divider>
+		<ion-item>
+			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="openImagePicker()">
+		    	<ion-icon name="camera"></ion-icon>
+		    	<h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3>
+		  	</button>
+		  	<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+		</ion-item>
+	<br>
+	<button ion-button block (click)="presentAlert(storeId,userId,storeContact,storeEmail)" class="button">Submit</button>
+</ion-content>
+

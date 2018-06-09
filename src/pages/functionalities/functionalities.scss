@@ -1,11 +1,45 @@
 functionalities-page {
-  .functionalities-content
+	.menu-title{
+		@font-face {
+		    font-family: 'Gotham';
+		    font-weight: bold;
+		    font-style: normal;
+		}
+		
+	}
+
+	.functionalities-content
 	{
-		background-color: color($colors, background, base);
+		border-bottom: 1px solid grey;
+		-webkit-tap-highlight-color: #908585;
 
 		.functionalities-list
 		{
-			@include basic-list-styles($theme-color-3, $theme-color-2);
 		}
+
+		.title
+		{
+			font-size: 16px;
+			font-family: "Calibri";
+		}
+
+		.info
+		{
+			font-size: 12px;
+			font-family: "Calibri";
+			color: #554F4F;
+		}
+
+		.item-distance
+		{
+			align-self: center;
+		}
+
+		.item-note
+		{
+			font-size: 16px;
+			font-family: "Calibri";
+		}
+
 	}
 }

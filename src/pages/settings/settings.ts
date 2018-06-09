@@ -6,6 +6,7 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { LoginPage } from '../login/login';
 
 import 'rxjs/Rx';
 
@@ -26,7 +27,7 @@ import { Crop } from '@ionic-native/crop';
 export class SettingsPage {
   settingsForm: FormGroup;
   // make WalkthroughPage the root (or first) page
-  rootPage: any = WalkthroughPage;
+  rootPage: any = LoginPage;
   loading: any;
 
   profile: ProfileModel = new ProfileModel();

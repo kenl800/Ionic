@@ -14,118 +14,122 @@
 
 
 <ion-content>
-<!--	<form [formGroup]="validations_form"  
-	(ngSubmit)="activateProduct(userId,serialcode,serialpass,sellerId,sellerName,cusNric,cusContact,phoneImei)">
--->
-		<section class="form-section">
-			<!--Soon to be Hidden-->
-			<p>demo status: {{demoStatus}}</p>
-			<div *ngFor="let results_user of results_users">
-				<ion-input type="hidden" placeholder="User ID" [disabled]="true" [(ngModel)]="userId" #ctl="ngModel" value={{results_user.u_id}}></ion-input>
-			</div>
+	<!-- <p>demo status: {{demoStatus}}</p> --> 
+	<ion-item>
+		<ion-label>Product Serial Code: {{serialCode}}</ion-label>
+	</ion-item>
 
-			<ion-item-divider color="light">Product Serial Code</ion-item-divider>
-			<ion-item>
-				<ion-input type="text" [disabled]="true" [(ngModel)]="serialcode" #ctl="ngModel" value="{{serialCode}}"></ion-input>
-				<ion-input type="hidden" [disabled]="true" [(ngModel)]="serialpass" #ctl="ngModel" value="{{serialPass}}"></ion-input>
-			</ion-item>
+	<ion-item *ngFor="let item of options; let i=index">
+	    <ion-label>{{item}}</ion-label>
+	    <ion-checkbox item-right [ngModel]="checkedIdx == i"(ngModelChange)="$event ? checkedIdx = i : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != i"></ion-checkbox>
+	</ion-item>
 
-			<ion-item-divider color="light">Seller QR Code</ion-item-divider>
-			
-			<!--Soon to be Hidden-->
-			<ion-input type="hidden" placeholder="Seller ID" [disabled]="true" [(ngModel)]="sellerId" #ctl="ngModel" value="{{scannedCode}}">
-			</ion-input>
-			 	
-			<ion-row padding>
-				<div *ngIf="!scanStatus">
-					<ion-col width-85>
-			    		<ion-input type="text" placeholder="Scan Seller QR Code" [disabled]="true" [(ngModel)]="sellerName">
-			    		</ion-input>
-			    	</ion-col>
-		    	</div>
-		    	<div *ngIf="scanStatus">
-		    		<ion-col width-85 *ngFor="let result of results">
-						<ion-input type="text" [disabled]="true" [(ngModel)]="sellerName" value="{{result.result.fullname}}"></ion-input>
-					</ion-col>
-				</div>
-		    	<ion-col width-15>
-		    		<ion-icon ios="ios-barcode-outline" md="md-barcode" (click)="scanCode()" style="zoom:3.0;"></ion-icon>
+	<div *ngFor="let results_user of results_users">
+		<ion-input type="hidden" placeholder="User ID" [disabled]="true" [(ngModel)]="userId" #ctl="ngModel" value={{results_user.u_id}}></ion-input>
+	</div>
+	<!-- <ion-item-divider color="light">Product Serial Code</ion-item-divider> 
+	<ion-item> -->
+	<ion-input type="hidden" [disabled]="true" [(ngModel)]="serialcode" #ctl="ngModel" value="{{serialCode}}"></ion-input>
+	<ion-input type="hidden" [disabled]="true" [(ngModel)]="serialpass" #ctl="ngModel" value="{{serialPass}}"></ion-input>
+	<!-- </ion-item> -->
+   
+	<div padding *ngIf="checkedIdx == 0">
+		<ion-item-divider color="light">Phone Details</ion-item-divider>
+    	<ion-row padding>
+	    	<ion-col width-100>
+				<ion-input type="number" placeholder="Phone IMEI" [(ngModel)]="phoneImei" #ctl="ngModel"></ion-input>
+			</ion-col>
+		</ion-row>
+		<button ion-button block (click)="presentAlert0(userId,serialcode,serialpass,phoneImei)" [disabled]="phoneImei == null" class="button">Submit</button>
+	</div>
+    
+    <div padding *ngIf="checkedIdx == 1">		
+	    <ion-item-divider color="light">Customer Details</ion-item-divider>
+	     <ion-item>
+			<ion-input type="text" placeholder="Customer Name" [(ngModel)]="cusName" #ctl="ngModel"></ion-input>
+		</ion-item>
+		 <ion-item>
+			<ion-input type="text" placeholder="Customer E-mail" [(ngModel)]="cusEmail" #ctl="ngModel"></ion-input>
+		</ion-item>
+	    <ion-item>
+			<ion-input type="text" placeholder="Customer NRIC / Passport" [(ngModel)]="cusNric" #ctl="ngModel"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-input type="text" placeholder="Phone Number" [(ngModel)]="cusContact" #ctl="ngModel"></ion-input>
+		</ion-item>
+		<ion-item-divider color="light">Phone Details</ion-item-divider>
+    	<ion-row padding>
+	    	<ion-col width-100>
+				<ion-input type="number" placeholder="Phone IMEI" [(ngModel)]="phoneImei" #ctl="ngModel"></ion-input>
+			</ion-col>
+		</ion-row>
+		<ion-item-divider color="light">Terms and Conditions</ion-item-divider>
+		<ion-row>
+			<ion-col width-15 padding>
+				<ion-checkbox [(ngModel)]="checkTerms"></ion-checkbox>
+			</ion-col>
+			<ion-col width-85>
+				<ion-label (click)="showTermsModal()">I acknowledge that I have read and <br>agree to the <a href="#">Terms and Conditions</a></ion-label>
+			</ion-col>
+		</ion-row>
+		<br>
+		<button ion-button block (click)="presentAlert1(userId,serialcode,serialpass,cusName,cusEmail,cusNric,cusContact,phoneImei)" 
+		[disabled]="(!checkTerms) || cusName == null || cusEmail == null || cusNric == null || cusContact == null || phoneImei == null" class="button">Submit</button>
+	</div>
+	
+	<div padding *ngIf="checkedIdx == 2">
+		<ion-item-divider color="light">Buyer QR Code</ion-item-divider>
+		<ion-input type="hidden" placeholder="Seller ID" [disabled]="true" [(ngModel)]="buyerId" #ctl="ngModel" value="{{scannedCode}}">
+		</ion-input>
+		 	
+		<ion-row>
+			<div *ngIf="!scanStatus">
+				<ion-col width-85>
+		    		<ion-input type="text" placeholder="Scan Buyer QR Code" [disabled]="true" [(ngModel)]="sellerName">
+		    		</ion-input>
 		    	</ion-col>
-		    </ion-row>
-			
-		    <ion-item-divider color="light">Customer Details</ion-item-divider>
+	    	</div>
+	    	<div *ngIf="scanStatus">
+	    		<ion-col width-85 *ngFor="let result of results">
+					<ion-input type="text" [disabled]="true" [(ngModel)]="sellerName" value="{{result.result.fullname}}"></ion-input>
+				</ion-col>
+			</div>
+	    	<ion-col width-15>
+	    		<ion-icon ios="ios-barcode-outline" md="md-barcode" (click)="scanCode()" style="zoom:3.0;"></ion-icon>
+	    	</ion-col>
+	    </ion-row>
+	    <ion-item-divider color="light">Customer Details</ion-item-divider>
 		    <ion-item>
 				<ion-input type="text" placeholder="Customer NRIC / Passport" [(ngModel)]="cusNric" #ctl="ngModel"></ion-input>
 			</ion-item>
-			<!--
-			<div class="validation-errors">
-		        <ng-container *ngFor="let validation of validation_messages.cusNric">
-		          <div class="error-message" *ngIf="(validations_form.get('cusNric').dirty || validations_form.get('cusNric').touched)">
-		            {{ validation.message }}
-		          </div>
-		        </ng-container>
-		     </div>
-			-->
-			<ion-item>
-				<ion-input type="text" placeholder="Phone Number" [(ngModel)]="cusContact" #ctl="ngModel"></ion-input>
-			</ion-item>
-			<!--
-			<div class="validation-errors">
-		        <ng-container *ngFor="let validation of validation_messages.cusContact">
-		          <div class="error-message" *ngIf="(validations_form.get('cusContact').dirty || validations_form.get('cusContact').touched)">
-		            {{ validation.message }}
-		          </div>
-		        </ng-container>
-		     </div>
-			-->
-			<ion-item-divider color="light">Phone Details</ion-item-divider>
-	    	<ion-row padding>
-		    	<ion-col width-70>
-					<ion-input type="number" placeholder="Phone IMEI" [(ngModel)]="phoneImei" #ctl="ngModel"></ion-input>
-				</ion-col>
-				<ion-col width-30>
-					<button ion-button small (click)="getImei()" class="button">Get IMEI</button>
-				</ion-col>
-			</ion-row>
-			<!--
-			<div class="validation-errors">
-		        <ng-container *ngFor="let validation of validation_messages.phoneImei">
-		          <div class="error-message" *ngIf="(validations_form.get('phoneImei').dirty || validations_form.get('phoneImei').touched)">
-		            {{ validation.message }}
-		          </div>
-		        </ng-container>
-		     </div>
-			-->
-			<ion-item-divider color="light">Attachments</ion-item-divider>
-			<ion-item>
-				<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="openImagePicker()">
-			    	<ion-icon name="camera"></ion-icon>
-			    	<h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3>
-			  	</button>
-			  	<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
-			</ion-item>
-			<ion-item-divider color="light">Terms and Conditions</ion-item-divider>
-			<ion-row>
-				<ion-col width-15 padding>
-					<ion-checkbox [(ngModel)]="checkTerms"></ion-checkbox>
-				</ion-col>
-				<ion-col width-85>
-					<ion-label (click)="showTermsModal()">I acknowledge that I have read and <br>agree to the <a href="#">Terms and Conditions</a></ion-label>
-				</ion-col>
-			</ion-row>
-			<!--
-			<div class="validation-errors">
-		        <ng-container *ngFor="let validation of validation_messages.checkTerms">
-		          <div class="error-message" *ngIf="(validations_form.get('checkTerms').dirty || validations_form.get('checkTerms').touched)">
-		            {{ validation.message }}
-		          </div>
-		        </ng-container>
-		    </div>
-			-->
-		</section>
-		<!-- <button ion-button full type="submit" [disabled]="!validations_form.valid">{{'SUBMIT' | translate}}</button>
-	</form> -->
-	<br>
-	<button ion-button block (click)="activateProduct(userId,serialcode,serialpass,sellerId,sellerName,cusNric,cusContact,phoneImei)" 
-	[disabled]="(!checkTerms)" class="button">Submit</button>
+	    <ion-item-divider color="light">Phone Details</ion-item-divider>
+    	<ion-row padding>
+	    	<ion-col width-100>
+				<ion-input type="number" placeholder="Phone IMEI" [(ngModel)]="phoneImei" #ctl="ngModel"></ion-input>
+			</ion-col>
+		</ion-row>
+	    <ion-item-divider color="light">Terms and Conditions</ion-item-divider>
+		<ion-row>
+			<ion-col width-15 padding>
+				<ion-checkbox [(ngModel)]="checkTerms"></ion-checkbox>
+			</ion-col>
+			<ion-col width-85>
+				<ion-label (click)="showTermsModal()">I acknowledge that I have read and <br>agree to the <a href="#">Terms and Conditions</a></ion-label>
+			</ion-col>
+		</ion-row>
+	    <br>
+		<button ion-button block (click)="presentAlert2(userId,serialcode,serialpass,buyerId,phoneImei,cusNric)" 
+		[disabled]="(!checkTerms) || phoneImei == null || buyerId == null || cusNric == null" class="button">Submit</button>
+	</div>
 </ion-content>
+
+<!-- 
+	<ion-item-divider color="light">Attachments</ion-item-divider>
+		<ion-item>
+			<button *ngIf="!selected_image" ion-button block large class="upload-image-button" (click)="openImagePicker()">
+		    	<ion-icon name="camera"></ion-icon>
+		    	<h3 class="button-title">{{'UPLOAD_AN_IMAGE' | translate}}</h3>
+		  	</button>
+		  	<preload-image *ngIf="selected_image" [ratio]="{w:1, h:1}" [src]="selected_image" alt="this is the image" title="IMAGE!"></preload-image>
+		</ion-item>
+-->

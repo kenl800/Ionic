@@ -7,14 +7,62 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button round outline icon-start small style="width:45%" (click) = 'mapView(1);'>Map</button>
-  <button ion-button round outline icon-end small style="width:50%" (click) = 'mapView(2);'>Street View</button>
+<ion-content>
+  <div class="top-button" padding-top padding-bottom>
+    <button ion-button round outline icon-start small style="width:45%" (click) = 'mapView(1);'>Map</button>
+    <button ion-button round outline icon-end small style="width:50%" (click) = 'mapView(2);'>Street View</button>
+  </div>
 
-  <div style="width:100%;height:45%;overflow:auto;">
-      <iframe style="width:100%;height:100%" [src]="mapurl"></iframe>
+  <div style="width:100%;height:55%;overflow:hidden;" scrolling="no" frameborder="0">
+      <iframe style="width:100%;height:100%;overflow:hidden;" [src]="mapurl" scrolling="no"></iframe>
   </div>  
-  <br>
+  
+  <div class="title-div" padding-left padding-right>
+    <p class="location-title"><b>{{getname}}</b></p>
+  </div>
+  <div class="content-div" padding-left padding-right>
+    <ion-row class="show-option" (click)="openActionSheet(getlat,getlng)">
+      <ion-col class="logo-col" width-10><ion-icon style="zoom:1.5" ios="ios-navigate-outline"></ion-icon></ion-col>
+      <ion-col class="address-col" width-70>
+        <p>{{getaddress}}</p>
+      </ion-col>
+      <ion-col class="distance-col" width-20 text-right>{{getdistance}} km</ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content-div" padding-left padding-right>
+    <ion-row class="show-option">
+      <ion-col class="logo-col" width-10><ion-icon style="zoom:1.5" name="call"></ion-icon></ion-col>
+      <ion-col class="address-col" width-70>
+        <p *ngIf="getContact != null">{{getContact}}</p>
+        <p *ngIf="getContact == null"><i>No details available yet</i></p>
+      </ion-col>
+      <ion-col class="distance-col" width-20 text-right>&nbsp;</ion-col>
+    </ion-row>
+    <ion-row class="show-option">
+      <ion-col class="logo-col" width-10><ion-icon style="zoom:1.5" name="mail"></ion-icon></ion-col>
+      <ion-col class="address-col" width-70>
+        <p *ngIf="getEmail != null">{{getEmail}}</p>
+        <p *ngIf="getEmail == null"><i>No details available yet</i></p>
+      </ion-col>
+      <ion-col class="distance-col" width-20 text-right>&nbsp;</ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content-div" padding-left padding-right>
+    <ion-row class="show-option">
+      <ion-col width-40></ion-col>
+      <ion-col width-30 padding-right>
+          <div *ngIf="getClaimStatus == 0 || getClaimStatus == null">
+            <button class="claim" ion-button outline (click)="confirmClaim(getid);">Claim Store</button>
+          </div>
+      </ion-col>
+      <ion-col width-30>
+          <button class="join" ion-button outline (click)="confirmJoin(getid);">Join Store</button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!--
   <table width="100%">
     <tr>
       <td>Id:</td>
@@ -36,17 +84,12 @@
       <td>Lng:</td>
       <td>{{getlng}}</td>
     </tr>
-<!--  
     <tr>
       <td colspan="2"><br>URL: {{geturl}} <br><br></td>
     </tr>
     <tr>
       <td colspan="2"> SANITIZED_URL: {{sanitizedUrl}}</td>
     </tr>
--->  
-  </table>
+ 
+  </table>--> 
 </ion-content>
-
-<ion-footer>
-  <button ion-button block ion-button (click)="openActionSheet(getlat,getlng)" class="button">Get Directions</button>
-</ion-footer>

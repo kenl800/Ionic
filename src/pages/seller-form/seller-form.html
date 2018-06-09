@@ -16,31 +16,40 @@
 <ion-content padding>
 	<!-- <ion-input type="text" [disabled]="true" [(ngModel)]="phoneImei" #ctl="ngModel" value=""></ion-input> -->
 
-	<ion-input type="text" [(ngModel)]="orderId" #ctl="ngModel" value="" placeholder="order ID"></ion-input>
-	<ion-input type="text" [(ngModel)]="userId" #ctl="ngModel" value="" placeholder="user Id"></ion-input>
-	<ion-input type="text" [(ngModel)]="serialCode" #ctl="ngModel" value="" placeholder="serial Code"></ion-input>
+	<!-- <ion-input type="text" [(ngModel)]="serialId" #ctl="ngModel" value="{{results.product_serial_id}}" placeholder="serial ID"></ion-input> -->
+
+	<ion-input type="hidden" [(ngModel)]="serialId" #ctl="ngModel" value="{{results.product_serial_id}}" placeholder="serial key"></ion-input>
+	<ion-input type="hidden" [(ngModel)]="buyerId" #ctl="ngModel" value="{{results.buyer_id}}" placeholder="buyer Id"></ion-input>
 	<ion-input type="text" [(ngModel)]="productName" #ctl="ngModel" value="" placeholder="product Name"></ion-input>
 	<!-- Current User (Seller) ID -->
-	<ion-input type="text" [(ngModel)]="sellerId" #ctl="ngModel" value="" placeholder="seller Id"></ion-input>
+	<div *ngFor="let results_user of results_users">
+		<ion-input type="text" [(ngModel)]="sellerId" #ctl="ngModel" value="{{results_user.u_id}}" placeholder="Person In Charge id"></ion-input>
+	</div>
 
-	<ion-item-divider color="light">Phone IMEI</ion-item-divider>
-	<!-- IMEI No. -->
-	<ion-input type="text" [(ngModel)]="phoneImei" #ctl="ngModel" value="" placeholder="phone Imei"></ion-input>
+	<!-- <ion-input type="text" [(ngModel)]="dealerId" #ctl="ngModel" value="" placeholder="dealer Id"></ion-input> -->
+
+	<ion-item-divider color="light">Phone Details</ion-item-divider>
+		<!-- IMEI No. -->
+		<ion-input type="text" [(ngModel)]="phoneImei" #ctl="ngModel" value="{{results.phone_imei}}" placeholder="phone Imei" [disabled]="true"></ion-input>
+		<ion-input type="text" [(ngModel)]="phoneModel" #ctl="ngModel" value="" placeholder="phone model"></ion-input>
 
 	<ion-item-divider color="light">Customer Info</ion-item-divider>
 	<!-- Customer Contact Details -->
-	<ion-input type="text" [(ngModel)]="cusNric" #ctl="ngModel" value="" placeholder="NRIC/Passport"></ion-input>
-	<ion-input type="text" [(ngModel)]="cusNo" #ctl="ngModel" value="" placeholder="Contact No."></ion-input>
+	<ion-input type="text" [(ngModel)]="cusNric" #ctl="ngModel" value="{{results.customer_NRIC}}" placeholder="NRIC/Passport" [disabled]="true"></ion-input>
+
+	<ion-input type="number" [(ngModel)]="cusNo" #ctl="ngModel" value="" placeholder="Contact No."></ion-input>
+
+	<ion-input type="number" [(ngModel)]="cusSecNo" #ctl="ngModel" value="" placeholder="Secondary Contact No." ></ion-input>
 
 	<ion-item-divider color="light">Issue</ion-item-divider>
-	<ion-item>
-  		<ion-textarea rows="5" placeholder="Issue..." [(ngModel)]="issue"></ion-textarea>
- 	</ion-item>
+		<ion-item>
+	  		<ion-textarea rows="5" placeholder="Issue..." [(ngModel)]="issue" #ctl="ngModel"></ion-textarea>
+	 	</ion-item>
 
  	<ion-item-divider color="light">Remarks</ion-item-divider>
-	<ion-item>
-  		<ion-textarea rows="5" placeholder="Remarks..." [(ngModel)]="remarks"></ion-textarea>
- 	</ion-item>
- 	<br><br><br>
- 	<button ion-button block>Submit</button>
+		<ion-item>
+	  		<ion-textarea rows="5" placeholder="Remarks..." [(ngModel)]="remarks" #ctl="ngModel"></ion-textarea>
+	 	</ion-item>
+	 	<br><br><br>
+	 	<button ion-button block (click)="presentAlert(serialId,buyerId,productName,sellerId,phoneImei,phoneModel,cusNric,cusNo,cusSecNo,issue,remarks)" [disabled]="cusNo == null || issue == null">Submit</button>
 </ion-content>

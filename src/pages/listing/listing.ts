@@ -10,6 +10,7 @@ import { ListingService } from './listing.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RestProvider } from '../../providers/rest/rest';
 import { ActivationPage } from '../activation/activation';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @Component({
   selector: 'listing-page',
@@ -29,16 +30,18 @@ export class ListingPage {
   finalCode: any;
   finalPass: any;
   url: any;
-
-
+  
   constructor(
     public nav: NavController,
     public listingService: ListingService,
     public loadingCtrl: LoadingController,
     private barcodeScanner: BarcodeScanner,
-    public restProvider: RestProvider
+    public restProvider: RestProvider,
+    //public localNotifications: LocalNotifications
+
   ) {
     this.loading = this.loadingCtrl.create();
+    //this.testNotification(2000);
   }
 
 
@@ -105,6 +108,17 @@ export class ListingPage {
       console.log(this.results)
     });
   }
+
+  /* testNotification(interval){ 
+    setInterval(() => { 
+       this.localNotifications.schedule({
+       title: 'Your phone is ready',
+       text: 'READYYYYYYYYYYYYYYYYYYYYYYYYYY'
+    });
+    }, interval);
+  }
+  */
+
 /*
   activateProduct(nric){
     this.productUrl = "https://care.x-one.asia/api/try_submit?nric=" + nric + "&age=19";
